@@ -31,8 +31,8 @@ urlpatterns = [
          LoginView.as_view(template_name="login.html"), name="login"),
     path(settings.LOGOUT_URL[1:],
          LogoutView.as_view(
-            next_page=settings.LOGOUT_REDIRECT_URL),
-         name="logout")
+        next_page=settings.LOGOUT_REDIRECT_URL),
+        name="logout")
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

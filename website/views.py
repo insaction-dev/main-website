@@ -11,7 +11,7 @@ from blog.models import Article
 class IndexList(ListView):
     model = News
     context_object_name = 'news'
-    template_name='website/index.html'
+    template_name = 'website/index.html'
 
     def get_queryset(self, *args, **kwargs):
         now = timezone.now()
@@ -21,6 +21,7 @@ class IndexList(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['recent_posts'] = Article.articles.all().order_by('-created')[:3]
+        context['recent_posts'] = Article.articles.all(
+        ).order_by('-created')[:3]
 
         return context

@@ -18,13 +18,17 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Article',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=140, verbose_name='titre')),
                 ('intro', models.TextField(max_length=350)),
-                ('image', models.ImageField(blank=True, null=True, upload_to='blog/articles')),
+                ('image', models.ImageField(blank=True,
+                                            null=True, upload_to='blog/articles')),
                 ('contents', models.TextField(verbose_name='contenu')),
-                ('created', models.DateTimeField(auto_now_add=True, verbose_name='créé')),
-                ('modified', models.DateTimeField(auto_now=True, verbose_name='modifié')),
+                ('created', models.DateTimeField(
+                    auto_now_add=True, verbose_name='créé')),
+                ('modified', models.DateTimeField(
+                    auto_now=True, verbose_name='modifié')),
                 ('views', models.IntegerField(default=0, verbose_name='vue')),
                 ('slug', models.SlugField(unique=True)),
             ],
@@ -35,8 +39,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Category',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=140, unique=True, verbose_name='nom')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('name', models.CharField(max_length=140,
+                                          unique=True, verbose_name='nom')),
                 ('description', models.TextField(max_length=350)),
                 ('slug', models.SlugField(unique=True)),
             ],
@@ -50,10 +56,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Profile',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('headshot', models.ImageField(blank=True, null=True, upload_to='', verbose_name='photo de profil')),
-                ('campus', models.CharField(choices=[('blois', 'Blois'), ('bourges', 'Bourges')], max_length=24)),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='utilisateur')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('headshot', models.ImageField(blank=True, null=True,
+                                               upload_to='', verbose_name='photo de profil')),
+                ('campus', models.CharField(choices=[
+                 ('blois', 'Blois'), ('bourges', 'Bourges')], max_length=24)),
+                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE,
+                                              to=settings.AUTH_USER_MODEL, verbose_name='utilisateur')),
             ],
             options={
                 'verbose_name': 'profil',
@@ -65,11 +75,13 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='article',
             name='author',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='blog.Profile', verbose_name='auteur'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='blog.Profile', verbose_name='auteur'),
         ),
         migrations.AddField(
             model_name='article',
             name='category',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='blog.Category', verbose_name='catégorie'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='blog.Category', verbose_name='catégorie'),
         ),
     ]

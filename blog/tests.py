@@ -6,9 +6,11 @@ from .models import UserProxy
 
 class UserProxyTest(TestCase):
     def setUp(self):
-        self.john = UserProxy.objects.create_user('johndoe', 'john@gmail.com', None, first_name="John", last_name="Doe")
-        self.solar = UserProxy.objects.create_user('solarliner', 'solarliner@gmail.com', None, first_name="Nathan", last_name="Graule")
-    
+        self.john = UserProxy.objects.create_user(
+            'johndoe', 'john@gmail.com', None, first_name="John", last_name="Doe")
+        self.solar = UserProxy.objects.create_user(
+            'solarliner', 'solarliner@gmail.com', None, first_name="Nathan", last_name="Graule")
+
     def test_full_name(self):
         """UserProxy has a `full_name` property that returns the full name."""
         # john = UserProxy.objects.get_by_natural_key('johndoe')

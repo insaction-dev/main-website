@@ -25,5 +25,6 @@ urlpatterns = [
     path('', ArticleListView.as_view(), name="index"),
     path('cat/<slug:slug>', CategoryListView.as_view(), name="category"),
     path('article/<slug:slug>/', ArticleDetailsView.as_view(), name="article"),
-    path('article/edit/<slug:slug>/', ArticleUpdateView.as_view(), name="article-edit")
+    path('article/edit/<slug:slug>/',
+         ArticleUpdateView.as_view(), name="article-edit")
 ]

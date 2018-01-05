@@ -95,7 +95,7 @@ class Article(models.Model):
     def save(self, *args, **kwargs):
         if not self.id:
             self.slug = "{}-{}".format(
-                        text.slugify(self.title)[:42], # slug.max_length - 8
+                        text.slugify(self.title)[:42],  # slug.max_length - 8
                         shortuuid.ShortUUID().random(length=8))
         super(Article, self).save(*args, **kwargs)
 
