@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block css %}
+  <style>
+      body {
+          background-color: black;
+          overflow-y: hidden;
+      }
+      .animate {
+          opacity: 0;
+          transition: opacity 1.5s ease-out;
+      }
+      .animate.ready {
+          opacity: 1;
+      }
+  </style>
+{% endblock css %}
+
+{% block scripts %}
+  <script>
+    
+    $(document).ready(function() {
+        setTimeout(function() {
+            $('#title').addClass('ready');
+            setTimeout(function() {
+                $('#video').addClass('ready');
+            }, 5e3);
+        }, 1000);
+    });
+
+  </script>
+{% endblock scripts %}
+
+{% block navbar %}
+  
+{% endblock navbar %}
+
+{% block content %}
+  <header class="black white-text valign-wrapper" style="height: 100vh;">
+      <div id="title" class="container animate">
+          <div class="row right">
+              <h1 class="light-green-text">INSAction</h1>
+              <h4>Une association <span class="red-text accent-3">INSA</span>, pour projeter et produire le septième art.</h4>
+              <p class="grey-text center">Coming soon...</p>
+          </div>
+      </div>
+      
+  </header>
+{% endblock content %}

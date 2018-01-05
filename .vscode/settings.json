@@ -1,0 +1,11 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/__pycache__": true,
+        "**/*.py[aoc]": true,
+        "**/migrations": true
+    },
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "python.pythonPath": "/home/solarliner/.virtualenvs/insaction-SvNIf-6E/bin/python3"
+}

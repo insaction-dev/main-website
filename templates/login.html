@@ -1,0 +1,43 @@
+{% extends "base.html" %} {% block content %}
+<div class="container">
+    {% if form.non_field_errors %}
+        <div class="row">
+            {% for error in form.non_field_errors %}
+                <div class="col s12 m6">
+                    <div class="card red darken-1 white-text">
+                        <div class="card-content">{{error|escape}}</div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="row">
+        <div class="card">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="card-content">
+                    <span class="card-title">Connexion</span>
+                    {% for field in form %}
+                        <div class="input-field">
+                            {{ field.label_tag }} {{ field }}
+                        </div>
+                        {% for err in field.errors %}
+                            <p class="red lighten-1">{{err | escape}}</p>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+                <div class="card-action">
+                    <button type="submit" class="btn teal accent-4 waves-effect waves-light">
+                        Connexion <i class="material-icons right">send</i>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %} {% block scripts %}
+<script>
+    $(document).ready(function () {
+        Materialize.updateTextFields();
+    })
+</script>
+{% endblock scripts %}

@@ -1,0 +1,28 @@
+[[source]]
+
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[packages]
+
+Django = "*"
+Pillow = "*"
+django-geofield = "*"
+django-leaflet = "*"
+rules = "*"
+shortuuid = "*"
+Markdown = "*"
+bleach = "*"
+
+
+[dev-packages]
+
+pylint = "*"
+"autopep8" = "*"
+
+
+[requires]
+
+python_version = "3.6"
