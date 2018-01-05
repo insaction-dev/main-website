@@ -10,7 +10,17 @@ pipenv install
 pipenv install --dev
 ```
 
+Il faut construire une base de données (cela va créer un fichier "db.sqlite3"):
+```bash
+    pipenv shell
+    # Attendre que le terminal soit redémarré
+    ./manage.py makemigrations website, blog
+    ./manage.py migrate
+```
+
 Pour lancer un serveur en local
-    pipenv run ./manage.py runserver
+```bash
+pipenv run ./manage.py runserver
+```
     
 Si vous êtes sous Windows, PyCharm est votre ami, sinon... bonne chance :smirk:
