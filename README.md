@@ -23,4 +23,4 @@ Pour lancer un serveur en local
 pipenv run ./manage.py runserver
 ```
     
-Si vous êtes sous Windows, PyCharm est votre ami, sinon... bonne chance :smirk:
+Si vous êtes sous Windows, PyCharm est votre ami; sinon... bonne chance :smirk:
