@@ -89,6 +89,10 @@ class Article(models.Model):
         lifetime = timezone.now() - self.created
         return self.views / lifetime.total_seconds()
 
+    def get_absolute_url(self):
+        """Returns a `reverse`-able tuple that points to the public resource."""
+        return 'blog:article', (self.slug,)
+
     def save(self, *args, **kwargs):
         if not self.id:
             self.slug = "{}-{}".format(
