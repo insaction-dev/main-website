@@ -16,6 +16,8 @@ Il faut construire une base de données (cela va créer un fichier "db.sqlite3")
     # Attendre que le terminal soit redémarré
     ./manage.py makemigrations website, blog
     ./manage.py migrate
+    # Ajouter les fichiers statiques des différentes applications dans le dossier "public"
+    ./manage.py collectstatic --no-input
 ```
 
 Pour lancer un serveur en local
