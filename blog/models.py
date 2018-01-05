@@ -59,7 +59,16 @@ class Category(models.Model):
     categories = models.Manager()
 
     def save(self, *args, **kwargs):
-        self.slug = text.slugify(self.name[:50])
+        # self.slug = text.slugify(self.name[:50])
+        slug = text.slugify(self.name)
+        if len(slug) > 50:
+            self.slug = "{}-{}".format(
+                slug[:41],
+                shortuuid.ShortUUID().random(length=8)
+            )
+        else:
+            self.slug = slug
+
         super(Category, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -96,9 +105,16 @@ class Article(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.id:
-            self.slug = "{}-{}".format(
-                        text.slugify(self.title)[:42],  # slug.max_length - 8
-                        shortuuid.ShortUUID().random(length=8))
+            
+            slug = text.slugify(self.title)
+            if len(slug) > 50:
+                self.slug = "{}-{}".format(
+                    slug[:41],  # slug.max_length - 9
+                    shortuuid.ShortUUID().random(length=8)
+                )
+            else:
+                self.slug = slug
+
         super(Article, self).save(*args, **kwargs)
 
     def __str__(self):
