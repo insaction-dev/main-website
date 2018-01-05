@@ -106,3 +106,5 @@ venv.bak/
 # Django
 public/
 media/
+db.sqlite3
+**/migrations
