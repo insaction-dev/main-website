@@ -86,7 +86,9 @@
         </p>
         {{edit_perm}}
         <div class="divider"></div>
-        <p class="flow-text">{{object.contents|markdownify}}</p>
+        <div id="main-article">
+            {{object.contents|markdownify}}
+        </div>
     </div>
     {% if object.modified != object.created %}
     <div class="container">
@@ -104,5 +106,8 @@
     $('div#possibly-fixed').css('position', 'absolute').css('z-index', 997).css('width', '100%');
     $('nav.nav-extended.light-green').removeClass('light-green').addClass('transparent z-depth-0');
     $('a.brand-logo').addClass('light-green-text');
+
+    // Adding classes to main article
+    $('#main-article>p, #main-article>blockquote').addClass('flow-text');
 </script>
 {% endblock scripts %}
