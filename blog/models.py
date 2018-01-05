@@ -4,6 +4,7 @@ Models needed to setup a general blog."""
 
 from django.db import models
 from django.conf import settings
+from django import urls
 from django.utils import timezone, text
 import shortuuid
 # Create your models here.
@@ -90,8 +91,8 @@ class Article(models.Model):
         return self.views / lifetime.total_seconds()
 
     def get_absolute_url(self):
-        """Returns a `reverse`-able tuple that points to the public resource."""
-        return 'blog:article', (self.slug,)
+        """Returns a reversed string that points to the public resource."""
+        return urls.reverse('blog:article', args=[self.slug])
 
     def save(self, *args, **kwargs):
         if not self.id:
