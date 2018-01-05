@@ -63,7 +63,7 @@
         <div class="col s12 l4 white-text">
             <div class="card">
                 <img src="{{article.image.url}}" alt="{{article.title|truncatechars:10}}" class="in-card">
-                <a href="{% url 'blog:article' article.id %}" class="in-card-title">{{article.title}}</a>
+                <a href="{% url 'blog:article' article.slug %}" class="in-card-title">{{article.title}}</a>
             </div>
         </div>
         {% endfor %}
