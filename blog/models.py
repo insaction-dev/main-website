@@ -1,14 +1,16 @@
+"""Blog models for Django
+
+Models needed to setup a general blog."""
+
 from django.db import models
-from django.db.models import signals
-from django.dispatch import receiver
 from django.conf import settings
 from django.utils import timezone, text
-from django_geofield.fields import GeoPositionField
 import shortuuid
 # Create your models here.
 
 
 class Profile(models.Model):
+    """The `Profile` model is an extension to the base Django User model."""
     class Meta:
         verbose_name = "profil"
 
@@ -45,6 +47,7 @@ class Profile(models.Model):
 
 
 class Category(models.Model):
+    """Model that regroups several articles under one category."""
     class Meta:
         verbose_name = "catégorie"
     name = models.CharField(max_length=140, verbose_name="nom", unique=True)
@@ -53,10 +56,6 @@ class Category(models.Model):
 
     # Manager
     categories = models.Manager()
-
-    @models.permalink
-    def get_absolute_url(self):
-        return 'blog:category', (self.slug,)
 
     def save(self, *args, **kwargs):
         self.slug = text.slugify(self.name[:50])
@@ -67,6 +66,7 @@ class Category(models.Model):
 
 
 class Article(models.Model):
+    """Piece of a blog, owned by a category."""
     title = models.CharField(max_length=140, verbose_name="titre")
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, verbose_name="catégorie")
@@ -83,12 +83,9 @@ class Article(models.Model):
     # Manager
     articles = models.Manager()
 
-    @models.permalink
-    def get_absolute_url(self):
-        return 'blog:article', (self.slug,)
-
     @property
     def trending_weight(self):
+        """Gets a popularity metric through a simple calculation: number of views over time."""
         lifetime = timezone.now() - self.created
         return self.views / lifetime.total_seconds()
 
