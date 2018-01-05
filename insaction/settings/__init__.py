@@ -30,7 +30,6 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
 PREREQ_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -47,7 +46,7 @@ PROJECT_APPS = [
     'blog'
 ]
 
-INSTALLED_APPS = PREREQ_APPS + REQUIREMENTS + PROJECT_APPS
+INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS + REQUIREMENTS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
