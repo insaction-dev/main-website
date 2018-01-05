@@ -1,8 +1,9 @@
+"""Blog views."""
+from datetime import timedelta
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.views.generic.list import ListView
 from django.views.generic import DetailView, UpdateView, CreateView
 from django.utils import timezone
-from datetime import timedelta
 
 from .models import Article, Category
 
@@ -28,16 +29,16 @@ class CategoryListView(ArticleListView):
 
     def get_queryset(self, **kwargs):
         qs = Article.articles.all()
-        if self.kwargs.get('pk'):
-            qs = qs.filter(category__id=self.kwargs['pk'])
+        if self.kwargs.get('slug'):
+            qs = qs.filter(category__slug=self.kwargs['slug'])
         return qs.order_by('-created')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['article_title'] = "Articles"
 
-        if self.kwargs.get('pk'):
-            category = Category.categories.get(id=self.kwargs['pk'])
+        if self.kwargs.get('slug'):
+            category = Category.categories.get(slug=self.kwargs['slug'])
             context['article_title'] = category.name
             context['category'] = category
 
