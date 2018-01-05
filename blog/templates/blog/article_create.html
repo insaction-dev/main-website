@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}
+  <title>Edition: {{object.title}} - Blog INSAction</title>
+{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+<style>
+    p.flow-text {
+        text-align: justify;
+        line-break: loose;
+    }
+</style>
+{% endblock css %}
+
+{% block navextend %}
+<div class="nav-wrapper light-green">
+    <div class="container" style="white-space: nowrap; overflow-x: auto;">
+        <div class="col s12">
+            <a href="{% url 'blog:index' %}" class="breadcrumb">Blogs</a>
+            <a href="{% url 'blog:category' object.category.slug %}" class="breadcrumb">{{object.category.name}}</a>
+            <a href="{% url 'blog:article' object.slug %}" class="breadcrumb">{{object.title|truncatewords:5}}</a>
+            <a href="#!" class="breadcrumb active">Edition</a>
+        </div>
+    </div>
+</div>
+{% endblock navextend %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="input-field">
+                {% with widget=form.title %}
+                <div class="col s12">
+                    {{widget.label_tag}}
+                    <input type="text" name="{{widget.name}}" id="{{widget.id_for_label}}" class="validate" value="{{widget.value}}" data-length="140"/>
+                </div>
+                {% endwith %}
+            </div>
+            <div class="input-field">
+                {% with widget=form.intro %}
+                <div class="col s12">
+                    {{widget.label_tag}}
+                    <textarea name="{{widget.name}}" id="{{widget.id_for_label}}" class="materialize-textarea validate" data-length="350">{{widget.value}}</textarea>
+                </div>
+                {% endwith %}
+            </div>
+            <div class="file-field input-field">
+                {% with widget=form.image %}
+                <div class="btn teal accent-4 waves-effect">
+                    <span>Image</span>
+                    <input type="file" name="{{widget.name}}" id="{{widget.id_for_label}}" accept="image/x-png,image/jpeg,image/gif">
+                </div>
+                <div class="file-path-wrapper">
+                    <input type="text" placeholder="Changer l'image">
+                </div>
+                {% endwith %}
+            </div>
+            <div class="input-field">
+                {% with widget=form.contents %}
+                <div class="col s12">
+                    {{widget.label_tag}}
+                    <textarea name="{{widget.name}}" id="{{widget.id_for_label}}">{{widget.value}}</textarea>
+                </div>
+                {% endwith %}
+            </div>
+                <button type="submit" class="btn teal accent-4"><i class="material-icons right">send</i>Envoyer</button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock content %}
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+<script>
+    var mde = new SimpleMDE({element: document.getElementById('{{form.contents.id_for_label|escapejs}}')});
+</script>
+{% endblock scripts %}

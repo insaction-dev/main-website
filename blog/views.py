@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.views.generic.list import ListView
-from django.views.generic import DetailView, UpdateView
+from django.views.generic import DetailView, UpdateView, CreateView
 from django.utils import timezone
 from datetime import timedelta
 
@@ -57,14 +57,15 @@ class ArticleDetailsView(DetailView):
         return obj
 
 
+class ArticleCreateView(CreateView, PermissionRequiredMixin):
+    permission_required = 'blog.create_article'
+    model = Article
+    fields = ['title', 'intro', 'image', 'contents']
+    template_name = "blog/article_create.html"
+
+
 class ArticleUpdateView(UpdateView, PermissionRequiredMixin):
     permission_required = 'blog.edit_article'
     model = Article
     fields = ['title', 'intro', 'image', 'contents']
     template_name = "blog/article_edit.html"
-
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
-
-        print("ArticleUpdateView: context", context)
-        return context
