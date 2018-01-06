@@ -22,6 +22,7 @@ bleach = "*"
 pylint = "*"
 "autopep8" = "*"
 coverage = "*"
+codacy-coverage = "*"
 
 
 [requires]
