@@ -1,7 +1,9 @@
 language: python
 python: '3.6'
+sudo: enabled
 
 install:
+    - pip install --user pipenv
     - pipenv install
     - pipenv install --dev
 scripts:
