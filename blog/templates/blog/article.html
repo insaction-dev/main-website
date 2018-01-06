@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load blog %}
 {% load rules %}
-{% has_perm 'blog.change_article' user object as can_edit %}
+{% has_perm 'blog' user as can_edit_article %}
 
 {% block title %}
 <title>{{object.title}} - Blog INSAction</title>
@@ -67,11 +67,11 @@
     <div class="container white-text">
         <h1>{{object.title}}</h1>
         <p>
-            <span class="grey-text text-lighten-3 flow-text">{{object.author.full_name}} | {{object.created | date}}</span>
+            <span class="grey-text text-lighten-3 flow-text">{{object.author.full_name}} | {{object.created | date}} | Can edit: {{can_edit_article}}</span>
         </p>
     </div>
 </div>
-{% if can_edit %}
+{% if can_edit_article %}
 <div class="fixed-action-btn">
     <a href="{% url 'blog:article-edit' object.slug %}" class="btn-floating btn-large light-green">
         <i class="large material-icons">mode_edit</i>
