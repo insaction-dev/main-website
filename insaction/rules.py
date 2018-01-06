@@ -7,7 +7,7 @@ def is_author(self, user, authored_object):
     if authored_object is None:
         return None
 
-    return user == authored_object.user
+    return user == authored_object.author
 
 
 is_author_group = rules.is_group_member('author')
