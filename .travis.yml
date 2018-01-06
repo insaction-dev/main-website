@@ -6,6 +6,6 @@ install:
     - pipenv install
     - pipenv install --dev
 script:
-    - pipenv run coverage run --source='.' manage.py tests
+    - pipenv run coverage run --source='.' manage.py test
     - pipenv run coverage xml
     - pipenv run python-codacy-coverage -r coverage.xml
