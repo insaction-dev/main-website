@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% load rules %}
+
+{% has_perm 'blog.add_article' user as can_add_article %}
 
 {% block css %}
   <style>
@@ -13,7 +16,7 @@
 {% endblock css %}
 
 {% block navextend %}
-<div class="nav-wrapper light-green">
+<div class="nav-wrapper light-green darken-1">
     <div class="container">
         <div class="col s12">
             {% if category %}
@@ -23,6 +26,8 @@
             <a class="breadcrumb active" href="{% url 'blog:index' %}">Blogs</a>
             {% endif %}
         </div>
+        {{user}}
+        <a href="{% url 'blog:article-add' %}" class="btn btn-floating btn-large halfway-fab waves-effect waves-light cyan accent-3"><i class="material-icons">add</i></a>
     </div>
 </div>
 {% endblock navextend %}
@@ -42,17 +47,21 @@
   <div class="row">
     {% if object_list %}
       {% for article in object_list %}
+      {% has_perm 'blog.edit_article' user article as can_edit_article %}
         <div class="col s12 l6">
           <div class="card">
             <div class="card-content">
               <span class="card-title truncate">{{article.title}}</span>
               <p class="grey-text">
                   <a href="{% url 'blog:category' article.category.slug %}">{{article.category.name}}</a>
-                  | {{article.author}} | {{article.created | date}}</p>
+                  | {{article.author}} | {{article.created | date}} | {{can_edit_article}}</p>
               <p>{{article.intro|truncatewords:27}}</p>
             </div>
             <div class="card-action">
                 <a class="light-green-text text-darken-3" href="{% url 'blog:article' article.slug %}">Lire</a>
+                {% if can_edit_article %}
+                    <a href="{% url 'blog:article-edit' article.slug %}" class="cyan-text accent-4-text"><i class="tiny material-icons">mode_edit</i></a>
+                {% endif %}
             </div>
           </div>
         </div>
