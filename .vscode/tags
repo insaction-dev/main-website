@@ -5,280 +5,290 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
 0001_initial.py	../blog/migrations/0001_initial.py	1;"	kind:file	line:1
-0002_auto_20180101_1853.py	../blog/migrations/0002_auto_20180101_1853.py	1;"	kind:file	line:1
-0003_auto_20180101_2128.py	../blog/migrations/0003_auto_20180101_2128.py	1;"	kind:file	line:1
-0004_auto_20180101_2130.py	../blog/migrations/0004_auto_20180101_2130.py	1;"	kind:file	line:1
-0005_auto_20180102_1807.py	../blog/migrations/0005_auto_20180102_1807.py	1;"	kind:file	line:1
-0006_auto_20180102_1818.py	../blog/migrations/0006_auto_20180102_1818.py	1;"	kind:file	line:1
-0007_article_image.py	../blog/migrations/0007_article_image.py	1;"	kind:file	line:1
-0008_auto_20180102_1917.py	../blog/migrations/0008_auto_20180102_1917.py	1;"	kind:file	line:1
-0009_auto_20180102_2134.py	../blog/migrations/0009_auto_20180102_2134.py	1;"	kind:file	line:1
+0001_initial.py	../website/migrations/0001_initial.py	1;"	kind:file	line:1
 ALLOWED_HOSTS	../insaction/settings/__init__.py	/^ALLOWED_HOSTS = []$/;"	kind:variable	line:29
+ALLOWED_HOSTS	../insaction/settings/dev.py	/^ALLOWED_HOSTS = "*"$/;"	kind:variable	line:4
+AUTHENTICATION_BACKENDS	../insaction/settings/__init__.py	/^AUTHENTICATION_BACKENDS = [$/;"	kind:variable	line:112
 AUTH_PASSWORD_VALIDATORS	../insaction/settings/__init__.py	/^AUTH_PASSWORD_VALIDATORS = [$/;"	kind:variable	line:96
 AppConfig	../blog/apps.py	/^from django.apps import AppConfig$/;"	kind:namespace	line:1
 AppConfig	../website/apps.py	/^from django.apps import AppConfig$/;"	kind:namespace	line:1
-Article	../blog/admin.py	/^from .models import Category, Article, Profile$/;"	kind:namespace	line:2
-Article	../blog/models.py	/^class Article(models.Model):$/;"	kind:class	line:47
-Article	../blog/views.py	/^from .models import Article$/;"	kind:namespace	line:6
-ArticleDetailsView	../blog/urls.py	/^from .views import ArticleListView, ArticleDetailsView, TrendingArticleListView$/;"	kind:namespace	line:21
-ArticleDetailsView	../blog/views.py	/^class ArticleDetailsView(DetailView):$/;"	kind:class	line:37
-ArticleListView	../blog/urls.py	/^from .views import ArticleListView, ArticleDetailsView, TrendingArticleListView$/;"	kind:namespace	line:21
-ArticleListView	../blog/views.py	/^class ArticleListView(ListView):$/;"	kind:class	line:9
-AticleAdmin	../blog/admin.py	/^class AticleAdmin(admin.ModelAdmin):$/;"	kind:class	line:13
+Article	../blog/admin.py	/^from .models import Category, Article, Profile$/;"	kind:namespace	line:3
+Article	../blog/models.py	/^class Article(models.Model):$/;"	kind:class	line:78
+Article	../blog/views.py	/^from .models import Article, Category$/;"	kind:namespace	line:8
+Article	../website/views.py	/^from blog.models import Article$/;"	kind:namespace	line:6
+ArticleAdmin	../blog/admin.py	/^class ArticleAdmin(ObjectPermissionsModelAdmin):$/;"	kind:class	line:14
+ArticleCreateView	../blog/urls.py	/^from .views import ArticleListView, ArticleDetailsView, CategoryListView, ArticleCreateView, ArticleUpdateView$/;"	kind:namespace	line:21
+ArticleCreateView	../blog/views.py	/^class ArticleCreateView(CreateView, PermissionRequiredMixin):$/;"	kind:class	line:61
+ArticleDetailsView	../blog/urls.py	/^from .views import ArticleListView, ArticleDetailsView, CategoryListView, ArticleCreateView, ArticleUpdateView$/;"	kind:namespace	line:21
+ArticleDetailsView	../blog/views.py	/^class ArticleDetailsView(DetailView):$/;"	kind:class	line:48
+ArticleListView	../blog/urls.py	/^from .views import ArticleListView, ArticleDetailsView, CategoryListView, ArticleCreateView, ArticleUpdateView$/;"	kind:namespace	line:21
+ArticleListView	../blog/views.py	/^class ArticleListView(ListView):$/;"	kind:class	line:11
+ArticleUpdateView	../blog/urls.py	/^from .views import ArticleListView, ArticleDetailsView, CategoryListView, ArticleCreateView, ArticleUpdateView$/;"	kind:namespace	line:21
+ArticleUpdateView	../blog/views.py	/^class ArticleUpdateView(UpdateView, PermissionRequiredMixin):$/;"	kind:class	line:68
 BASE_DIR	../insaction/settings/__init__.py	/^BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname($/;"	kind:variable	line:16
 BlogConfig	../blog/apps.py	/^class BlogConfig(AppConfig):$/;"	kind:class	line:4
-CAMPUSES	../blog/models.py	/^    CAMPUSES = ($/;"	kind:variable	line:9
-Category	../blog/admin.py	/^from .models import Category, Article, Profile$/;"	kind:namespace	line:2
-Category	../blog/models.py	/^class Category(models.Model):$/;"	kind:class	line:37
+CAMPUSES	../blog/models.py	/^    CAMPUSES = ($/;"	kind:variable	line:18
+Category	../blog/admin.py	/^from .models import Category, Article, Profile$/;"	kind:namespace	line:3
+Category	../blog/models.py	/^class Category(models.Model):$/;"	kind:class	line:50
+Category	../blog/views.py	/^from .models import Article, Category$/;"	kind:namespace	line:8
+CategoryAdmin	../blog/admin.py	/^class CategoryAdmin(admin.ModelAdmin):$/;"	kind:class	line:20
+CategoryListView	../blog/urls.py	/^from .views import ArticleListView, ArticleDetailsView, CategoryListView, ArticleCreateView, ArticleUpdateView$/;"	kind:namespace	line:21
+CategoryListView	../blog/views.py	/^class CategoryListView(ArticleListView):$/;"	kind:class	line:27
+CreateView	../blog/views.py	/^from django.views.generic import DetailView, UpdateView, CreateView$/;"	kind:namespace	line:5
 DATABASES	../insaction/settings/__init__.py	/^DATABASES = {$/;"	kind:variable	line:85
 DEBUG	../insaction/settings/__init__.py	/^DEBUG = True$/;"	kind:variable	line:27
 DEBUG	../insaction/settings/dev.py	/^DEBUG = True$/;"	kind:variable	line:3
 DEBUG	../insaction/settings/prod.py	/^DEBUG = False$/;"	kind:variable	line:3
-DetailView	../blog/views.py	/^from django.views.generic import DetailView$/;"	kind:namespace	line:2
-GeoPositionField	../blog/models.py	/^from django_geofield.fields import GeoPositionField$/;"	kind:namespace	line:4
-INSTALLED_APPS	../insaction/settings/__init__.py	/^INSTALLED_APPS = PREREQ_APPS + REQUIREMENTS + PROJECT_APPS$/;"	kind:variable	line:49
-LANGUAGE_CODE	../insaction/settings/__init__.py	/^LANGUAGE_CODE = 'fr'$/;"	kind:variable	line:115
-LOGIN_URL	../insaction/settings/__init__.py	/^LOGIN_URL = '\/auth\/login'/;"	kind:variable	line:130
-ListView	../blog/views.py	/^from django.views.generic.list import ListView$/;"	kind:namespace	line:1
+DetailView	../blog/views.py	/^from django.views.generic import DetailView, UpdateView, CreateView$/;"	kind:namespace	line:5
+INSTALLED_APPS	../insaction/settings/__init__.py	/^INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS + REQUIREMENTS$/;"	kind:variable	line:49
+IndexList	../website/views.py	/^class IndexList(ListView):$/;"	kind:class	line:11
+LANGUAGE_CODE	../insaction/settings/__init__.py	/^LANGUAGE_CODE = 'fr'$/;"	kind:variable	line:120
+LOGGING	../insaction/settings/dev.py	/^LOGGING = {$/;"	kind:variable	line:6
+LOGIN_REDIRECT_URL	../insaction/settings/__init__.py	/^LOGIN_REDIRECT_URL = '\/'$/;"	kind:variable	line:143
+LOGIN_URL	../insaction/settings/__init__.py	/^LOGIN_URL = '\/auth\/login'$/;"	kind:variable	line:141
+LOGOUT_REDIRECT_URL	../insaction/settings/__init__.py	/^LOGOUT_REDIRECT_URL = LOGIN_REDIRECT_URL$/;"	kind:variable	line:144
+LOGOUT_URL	../insaction/settings/__init__.py	/^LOGOUT_URL = '\/auth\/logout'$/;"	kind:variable	line:142
+ListView	../blog/views.py	/^from django.views.generic.list import ListView$/;"	kind:namespace	line:4
+ListView	../website/views.py	/^from django.views.generic.list import ListView$/;"	kind:namespace	line:2
+LoginView	../insaction/urls.py	/^from django.contrib.auth.views import LoginView, LogoutView$/;"	kind:namespace	line:24
+LogoutView	../insaction/urls.py	/^from django.contrib.auth.views import LoginView, LogoutView$/;"	kind:namespace	line:24
+MEDIA_ROOT	../insaction/settings/__init__.py	/^MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_URL[1:])$/;"	kind:variable	line:139
+MEDIA_URL	../insaction/settings/__init__.py	/^MEDIA_URL = '\/media\/'$/;"	kind:variable	line:138
 MIDDLEWARE	../insaction/settings/__init__.py	/^MIDDLEWARE = [$/;"	kind:variable	line:51
-Meta	../blog/models.py	/^    class Meta:$/;"	kind:class	line:38
-Migration	../blog/migrations/0001_initial.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
-Migration	../blog/migrations/0002_auto_20180101_1853.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
-Migration	../blog/migrations/0003_auto_20180101_2128.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:6
-Migration	../blog/migrations/0004_auto_20180101_2130.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
-Migration	../blog/migrations/0005_auto_20180102_1807.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
-Migration	../blog/migrations/0006_auto_20180102_1818.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:7
-Migration	../blog/migrations/0007_article_image.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:6
-Migration	../blog/migrations/0008_auto_20180102_1917.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:9
-Migration	../blog/migrations/0009_auto_20180102_2134.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:6
-PREREQ_APPS	../insaction/settings/__init__.py	/^PREREQ_APPS = [$/;"	kind:variable	line:34
+Meta	../blog/models.py	/^    class Meta:$/;"	kind:class	line:15
+Meta	../blog/models.py	/^    class Meta:$/;"	kind:class	line:52
+Meta	../website/models.py	/^    class Meta:$/;"	kind:class	line:7
+Migration	../blog/migrations/0001_initial.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:9
+Migration	../website/migrations/0001_initial.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
+News	../website/models.py	/^class News(models.Model):$/;"	kind:class	line:6
+News	../website/views.py	/^from .models import News$/;"	kind:namespace	line:5
+ObjectPermissionsModelAdmin	../blog/admin.py	/^from rules.contrib.admin import ObjectPermissionsModelAdmin$/;"	kind:namespace	line:2
+PREREQ_APPS	../insaction/settings/__init__.py	/^PREREQ_APPS = [$/;"	kind:variable	line:33
 PROJECT_APPS	../insaction/settings/__init__.py	/^PROJECT_APPS = [$/;"	kind:variable	line:44
-Profile	../blog/admin.py	/^from .models import Category, Article, Profile$/;"	kind:namespace	line:2
-Profile	../blog/models.py	/^class Profile(models.Model):$/;"	kind:class	line:8
-ProfileAdmin	../blog/admin.py	/^class ProfileAdmin(admin.ModelAdmin):$/;"	kind:class	line:8
-REQUIREMENTS	../insaction/settings/__init__.py	/^REQUIREMENTS = [$/;"	kind:variable	line:42
+PermissionRequiredMixin	../blog/views.py	/^from django.contrib.auth.mixins import PermissionRequiredMixin$/;"	kind:namespace	line:3
+Profile	../blog/admin.py	/^from .models import Category, Article, Profile$/;"	kind:namespace	line:3
+Profile	../blog/models.py	/^class Profile(models.Model):$/;"	kind:class	line:13
+ProfileAdmin	../blog/admin.py	/^class ProfileAdmin(admin.ModelAdmin):$/;"	kind:class	line:9
+REQUIREMENTS	../insaction/settings/__init__.py	/^REQUIREMENTS = [$/;"	kind:variable	line:41
 ROOT_URLCONF	../insaction/settings/__init__.py	/^ROOT_URLCONF = 'insaction.urls'$/;"	kind:variable	line:61
-STATIC_URL	../insaction/settings/__init__.py	/^STATIC_URL = '\/public\/'$/;"	kind:variable	line:129
+STATICFILES_DIRS	../insaction/settings/__init__.py	/^STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]$/;"	kind:variable	line:136
+STATIC_ROOT	../insaction/settings/__init__.py	/^STATIC_ROOT = os.path.join(BASE_DIR, STATIC_URL[1:])$/;"	kind:variable	line:135
+STATIC_URL	../insaction/settings/__init__.py	/^STATIC_URL = '\/public\/'$/;"	kind:variable	line:134
 TEMPLATES	../insaction/settings/__init__.py	/^TEMPLATES = [$/;"	kind:variable	line:63
-TIME_ZONE	../insaction/settings/__init__.py	/^TIME_ZONE = 'UTC'$/;"	kind:variable	line:117
+TIME_ZONE	../insaction/settings/__init__.py	/^TIME_ZONE = 'UTC'$/;"	kind:variable	line:122
 TestCase	../blog/tests.py	/^from django.test import TestCase$/;"	kind:namespace	line:1
 TestCase	../website/tests.py	/^from django.test import TestCase$/;"	kind:namespace	line:1
-TrendingArticleListView	../blog/urls.py	/^from .views import ArticleListView, ArticleDetailsView, TrendingArticleListView$/;"	kind:namespace	line:21
-TrendingArticleListView	../blog/views.py	/^class TrendingArticleListView(ArticleListView):$/;"	kind:class	line:25
-USE_I18N	../insaction/settings/__init__.py	/^USE_I18N = True$/;"	kind:variable	line:119
-USE_L10N	../insaction/settings/__init__.py	/^USE_L10N = True$/;"	kind:variable	line:121
-USE_TZ	../insaction/settings/__init__.py	/^USE_TZ = True$/;"	kind:variable	line:123
+USE_I18N	../insaction/settings/__init__.py	/^USE_I18N = True$/;"	kind:variable	line:124
+USE_L10N	../insaction/settings/__init__.py	/^USE_L10N = True$/;"	kind:variable	line:126
+USE_TZ	../insaction/settings/__init__.py	/^USE_TZ = True$/;"	kind:variable	line:128
+UpdateView	../blog/views.py	/^from django.views.generic import DetailView, UpdateView, CreateView$/;"	kind:namespace	line:5
 UserProxy	../blog/tests.py	/^from .models import UserProxy$/;"	kind:namespace	line:2
 UserProxyTest	../blog/tests.py	/^class UserProxyTest(TestCase):$/;"	kind:class	line:7
 WSGI_APPLICATION	../insaction/settings/__init__.py	/^WSGI_APPLICATION = 'insaction.wsgi.application'$/;"	kind:variable	line:79
 WebsiteConfig	../website/apps.py	/^class WebsiteConfig(AppConfig):$/;"	kind:class	line:4
 __init__.py	../blog/__init__.py	1;"	kind:file	line:1
 __init__.py	../blog/migrations/__init__.py	1;"	kind:file	line:1
+__init__.py	../blog/templatetags/__init__.py	1;"	kind:file	line:1
 __init__.py	../insaction/__init__.py	1;"	kind:file	line:1
 __init__.py	../insaction/settings/__init__.py	1;"	kind:file	line:1
 __init__.py	../website/__init__.py	1;"	kind:file	line:1
-__str__	../blog/models.py	/^    def __str__(self):$/;"	kind:member	line:32
-__str__	../blog/models.py	/^    def __str__(self):$/;"	kind:member	line:43
-__str__	../blog/models.py	/^    def __str__(self):$/;"	kind:member	line:63
+__init__.py	../website/migrations/__init__.py	1;"	kind:file	line:1
+__str__	../blog/models.py	/^    def __str__(self):$/;"	kind:member	line:120
+__str__	../blog/models.py	/^    def __str__(self):$/;"	kind:member	line:46
+__str__	../blog/models.py	/^    def __str__(self):$/;"	kind:member	line:74
+__str__	../website/models.py	/^    def __str__(self):$/;"	kind:member	line:20
 admin	../blog/admin.py	/^from django.contrib import admin$/;"	kind:namespace	line:1
 admin	../insaction/urls.py	/^from django.contrib import admin$/;"	kind:namespace	line:20
 admin	../website/admin.py	/^from django.contrib import admin$/;"	kind:namespace	line:1
 admin.py	../blog/admin.py	1;"	kind:file	line:1
 admin.py	../website/admin.py	1;"	kind:file	line:1
 app_name	../blog/urls.py	/^app_name = "blog"$/;"	kind:variable	line:23
+app_name	../website/urls.py	/^app_name = "website"$/;"	kind:variable	line:23
 application	../insaction/wsgi.py	/^application = get_wsgi_application()$/;"	kind:variable	line:16
 apps.py	../blog/apps.py	1;"	kind:file	line:1
 apps.py	../website/apps.py	1;"	kind:file	line:1
-auth	../blog/migrations/0005_auto_20180102_1807.py	/^import django.contrib.auth.models$/;"	kind:namespace	line:3
-author	../blog/models.py	/^    author = models.ForeignKey(Profile, on_delete=models.CASCADE)$/;"	kind:variable	line:50
-bases	../blog/migrations/0005_auto_20180102_1807.py	/^            bases=('auth.user',),$/;"	kind:variable	line:24
-blog	../insaction/urls.py	/^import blog$/;"	kind:namespace	line:23
-campus	../blog/models.py	/^    campus = models.CharField(max_length=24, choices=CAMPUSES)$/;"	kind:variable	line:16
-category	../blog/models.py	/^    category = models.ForeignKey(Category, on_delete=models.CASCADE)$/;"	kind:variable	line:49
-contents	../blog/models.py	/^    contents = models.TextField()$/;"	kind:variable	line:53
-contrib	../blog/migrations/0005_auto_20180102_1807.py	/^import django.contrib.auth.models$/;"	kind:namespace	line:3
-created	../blog/models.py	/^    created = models.DateTimeField(editable=False, default=timezone.now)$/;"	kind:variable	line:54
-date_hierarchy	../blog/admin.py	/^    date_hierarchy = 'created'$/;"	kind:variable	line:14
-datetime	../blog/migrations/0004_auto_20180101_2130.py	/^import datetime$/;"	kind:namespace	line:3
+articles	../blog/models.py	/^    articles = models.Manager()$/;"	kind:variable	line:94
+author	../blog/models.py	/^    author = models.ForeignKey($/;"	kind:variable	line:83
+bleach	../blog/templatetags/blog.py	/^import bleach$/;"	kind:namespace	line:4
+blog.py	../blog/templatetags/blog.py	1;"	kind:file	line:1
+blog_post	../website/models.py	/^    blog_post = models.ForeignKey($/;"	kind:variable	line:14
+campus	../blog/models.py	/^    campus = models.CharField(max_length=24, choices=CAMPUSES)$/;"	kind:variable	line:27
+categories	../blog/models.py	/^    categories = models.Manager()$/;"	kind:variable	line:59
+category	../blog/models.py	/^    category = models.ForeignKey($/;"	kind:variable	line:81
+clean	../blog/templatetags/blog.py	/^def clean(value):$/;"	kind:function	line:15
+contents	../blog/models.py	/^    contents = models.TextField(verbose_name="contenu")$/;"	kind:variable	line:87
+context_object_name	../website/views.py	/^    context_object_name = 'news'$/;"	kind:variable	line:13
+created	../blog/models.py	/^    created = models.DateTimeField(verbose_name="créé", auto_now_add=True)$/;"	kind:variable	line:88
+date_hierarchy	../blog/admin.py	/^    date_hierarchy = 'created'$/;"	kind:variable	line:15
 db	../blog/migrations/0001_initial.py	/^import django.db.models.deletion$/;"	kind:namespace	line:5
-db	../blog/migrations/0002_auto_20180101_1853.py	/^import django.db.models.deletion$/;"	kind:namespace	line:5
-db	../blog/migrations/0006_auto_20180102_1818.py	/^import django.db.models.deletion$/;"	kind:namespace	line:4
-db	../blog/migrations/0008_auto_20180102_1917.py	/^import django.db.models.deletion$/;"	kind:namespace	line:5
+db	../blog/migrations/0001_initial.py	/^import django.db.models.manager$/;"	kind:namespace	line:6
+db	../website/migrations/0001_initial.py	/^import django.db.models.deletion$/;"	kind:namespace	line:4
+db	../website/migrations/0001_initial.py	/^import django.db.models.manager$/;"	kind:namespace	line:5
 deletion	../blog/migrations/0001_initial.py	/^import django.db.models.deletion$/;"	kind:namespace	line:5
-deletion	../blog/migrations/0002_auto_20180101_1853.py	/^import django.db.models.deletion$/;"	kind:namespace	line:5
-deletion	../blog/migrations/0006_auto_20180102_1818.py	/^import django.db.models.deletion$/;"	kind:namespace	line:4
-deletion	../blog/migrations/0008_auto_20180102_1917.py	/^import django.db.models.deletion$/;"	kind:namespace	line:5
-dependencies	../blog/migrations/0001_initial.py	/^    dependencies = [$/;"	kind:variable	line:12
-dependencies	../blog/migrations/0002_auto_20180101_1853.py	/^    dependencies = [$/;"	kind:variable	line:10
-dependencies	../blog/migrations/0003_auto_20180101_2128.py	/^    dependencies = [$/;"	kind:variable	line:8
-dependencies	../blog/migrations/0004_auto_20180101_2130.py	/^    dependencies = [$/;"	kind:variable	line:10
-dependencies	../blog/migrations/0005_auto_20180102_1807.py	/^    dependencies = [$/;"	kind:variable	line:10
-dependencies	../blog/migrations/0006_auto_20180102_1818.py	/^    dependencies = [$/;"	kind:variable	line:9
-dependencies	../blog/migrations/0007_article_image.py	/^    dependencies = [$/;"	kind:variable	line:8
-dependencies	../blog/migrations/0008_auto_20180102_1917.py	/^    dependencies = [$/;"	kind:variable	line:11
-dependencies	../blog/migrations/0009_auto_20180102_2134.py	/^    dependencies = [$/;"	kind:variable	line:8
-description	../blog/models.py	/^    description = models.TextField(max_length=350)$/;"	kind:variable	line:41
+deletion	../website/migrations/0001_initial.py	/^import django.db.models.deletion$/;"	kind:namespace	line:4
+dependencies	../blog/migrations/0001_initial.py	/^    dependencies = [$/;"	kind:variable	line:13
+dependencies	../website/migrations/0001_initial.py	/^    dependencies = [$/;"	kind:variable	line:12
+description	../blog/models.py	/^    description = models.TextField(max_length=350)$/;"	kind:variable	line:55
 dev.py	../insaction/settings/dev.py	1;"	kind:file	line:1
 django	../blog/migrations/0001_initial.py	/^import django.db.models.deletion$/;"	kind:namespace	line:5
-django	../blog/migrations/0002_auto_20180101_1853.py	/^import django.db.models.deletion$/;"	kind:namespace	line:5
-django	../blog/migrations/0005_auto_20180102_1807.py	/^import django.contrib.auth.models$/;"	kind:namespace	line:3
-django	../blog/migrations/0005_auto_20180102_1807.py	/^import django.utils.timezone$/;"	kind:namespace	line:5
-django	../blog/migrations/0006_auto_20180102_1818.py	/^import django.db.models.deletion$/;"	kind:namespace	line:4
-django	../blog/migrations/0008_auto_20180102_1917.py	/^import django.db.models.deletion$/;"	kind:namespace	line:5
-django_geofield	../blog/migrations/0008_auto_20180102_1917.py	/^import django_geofield.fields$/;"	kind:namespace	line:6
-exclude	../blog/admin.py	/^    exclude = ('created', 'modified')$/;"	kind:variable	line:15
+django	../blog/migrations/0001_initial.py	/^import django.db.models.manager$/;"	kind:namespace	line:6
+django	../website/migrations/0001_initial.py	/^import django.db.models.deletion$/;"	kind:namespace	line:4
+django	../website/migrations/0001_initial.py	/^import django.db.models.manager$/;"	kind:namespace	line:5
+exclude	../blog/admin.py	/^    exclude = ('created', 'modified', 'slug')$/;"	kind:variable	line:16
+exclude	../blog/admin.py	/^    exclude = ('slug',)$/;"	kind:variable	line:21
 execute_from_command_line	../manage.py	/^        from django.core.management import execute_from_command_line$/;"	kind:namespace	line:8
-field	../blog/migrations/0002_auto_20180101_1853.py	/^            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='blog.Category'),$/;"	kind:variable	line:46
-field	../blog/migrations/0003_auto_20180101_2128.py	/^            field=models.DateTimeField(blank=True, null=True),$/;"	kind:variable	line:30
-field	../blog/migrations/0003_auto_20180101_2128.py	/^            field=models.DateTimeField(editable=False),$/;"	kind:variable	line:25
-field	../blog/migrations/0003_auto_20180101_2128.py	/^            field=models.IntegerField(default=0),$/;"	kind:variable	line:20
-field	../blog/migrations/0004_auto_20180101_2130.py	/^            field=models.DateTimeField(default=datetime.datetime(2018, 1, 1, 21, 30, 3, 884603, tzinfo=utc), editable=False),$/;"	kind:variable	line:18
-field	../blog/migrations/0005_auto_20180102_1807.py	/^            field=models.DateTimeField(default=django.utils.timezone.now, editable=False),$/;"	kind:variable	line:32
-field	../blog/migrations/0006_auto_20180102_1818.py	/^            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='blog.UserProxy'),$/;"	kind:variable	line:17
-field	../blog/migrations/0007_article_image.py	/^            field=models.ImageField(blank=True, null=True, upload_to=''),$/;"	kind:variable	line:16
-field	../blog/migrations/0008_auto_20180102_1917.py	/^            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='blog.Profile'),$/;"	kind:variable	line:40
-field	../blog/migrations/0009_auto_20180102_2134.py	/^            field=models.CharField(choices=[('blois', 'Blois'), ('bourges', 'Bourges')], max_length=24),$/;"	kind:variable	line:16
-fields	../blog/migrations/0001_initial.py	/^            fields=[$/;"	kind:variable	line:19
-fields	../blog/migrations/0001_initial.py	/^            fields=[$/;"	kind:variable	line:27
-fields	../blog/migrations/0002_auto_20180101_1853.py	/^            fields=[$/;"	kind:variable	line:18
-fields	../blog/migrations/0005_auto_20180102_1807.py	/^            fields=[$/;"	kind:variable	line:18
-fields	../blog/migrations/0008_auto_20180102_1917.py	/^            fields=[$/;"	kind:variable	line:19
-fields	../blog/migrations/0008_auto_20180102_1917.py	/^            fields=[$/;"	kind:variable	line:27
-fields	../blog/migrations/0008_auto_20180102_1917.py	/^import django_geofield.fields$/;"	kind:namespace	line:6
-full_name	../blog/models.py	/^    def full_name(self):$/;"	kind:member	line:19
-full_name_short	../blog/models.py	/^    def full_name_short(self):$/;"	kind:member	line:26
-get_context_data	../blog/views.py	/^    def get_context_data(self, queryset=None):$/;"	kind:member	line:18
-get_context_data	../blog/views.py	/^    def get_context_data(self, queryset=None):$/;"	kind:member	line:26
-get_object	../blog/views.py	/^    def get_object(self, queryset=None):$/;"	kind:member	line:42
-get_queryset	../blog/views.py	/^    def get_queryset(self):$/;"	kind:member	line:14
-get_queryset	../blog/views.py	/^    def get_queryset(self):$/;"	kind:member	line:32
+field	../blog/migrations/0001_initial.py	/^            field=models.ForeignKey($/;"	kind:variable	line:78
+field	../blog/migrations/0001_initial.py	/^            field=models.ForeignKey($/;"	kind:variable	line:84
+fields	../blog/migrations/0001_initial.py	/^            fields=[$/;"	kind:variable	line:20
+fields	../blog/migrations/0001_initial.py	/^            fields=[$/;"	kind:variable	line:41
+fields	../blog/migrations/0001_initial.py	/^            fields=[$/;"	kind:variable	line:58
+fields	../blog/views.py	/^    fields = ['title', 'intro', 'image', 'contents']$/;"	kind:variable	line:64
+fields	../blog/views.py	/^    fields = ['title', 'intro', 'image', 'contents']$/;"	kind:variable	line:71
+fields	../website/migrations/0001_initial.py	/^            fields=[$/;"	kind:variable	line:19
+full_name	../blog/models.py	/^    def full_name(self):$/;"	kind:member	line:33
+full_name_short	../blog/models.py	/^    def full_name_short(self):$/;"	kind:member	line:40
+get_absolute_url	../blog/models.py	/^    def get_absolute_url(self):$/;"	kind:member	line:102
+get_context_data	../blog/views.py	/^    def get_context_data(self, **kwargs):$/;"	kind:member	line:36
+get_context_data	../blog/views.py	/^    def get_context_data(self, queryset=None):$/;"	kind:member	line:20
+get_context_data	../website/views.py	/^    def get_context_data(self, *args, **kwargs):$/;"	kind:member	line:22
+get_object	../blog/views.py	/^    def get_object(self, queryset=None):$/;"	kind:member	line:53
+get_queryset	../blog/views.py	/^    def get_queryset(self, **kwargs):$/;"	kind:member	line:16
+get_queryset	../blog/views.py	/^    def get_queryset(self, **kwargs):$/;"	kind:member	line:30
+get_queryset	../website/views.py	/^    def get_queryset(self, *args, **kwargs):$/;"	kind:member	line:16
 get_wsgi_application	../insaction/wsgi.py	/^from django.core.wsgi import get_wsgi_application$/;"	kind:namespace	line:12
-headshot	../blog/models.py	/^    headshot = models.ImageField(blank=True, null=True)$/;"	kind:variable	line:15
-image	../blog/models.py	/^    image = models.ImageField(blank=True, null=True)$/;"	kind:variable	line:52
+headshot	../blog/models.py	/^    headshot = models.ImageField($/;"	kind:variable	line:25
+image	../blog/models.py	/^    image = models.ImageField(blank=True, null=True, upload_to="blog\/articles")$/;"	kind:variable	line:86
+image	../website/models.py	/^    image = models.ImageField(upload_to="news")$/;"	kind:variable	line:12
 include	../insaction/urls.py	/^from django.urls import path, include$/;"	kind:namespace	line:21
-initial	../blog/migrations/0001_initial.py	/^    initial = True$/;"	kind:variable	line:10
-intro	../blog/models.py	/^    intro = models.TextField(max_length=350)$/;"	kind:variable	line:51
+initial	../blog/migrations/0001_initial.py	/^    initial = True$/;"	kind:variable	line:11
+initial	../website/migrations/0001_initial.py	/^    initial = True$/;"	kind:variable	line:10
+intro	../blog/models.py	/^    intro = models.TextField(max_length=350)$/;"	kind:variable	line:85
+is_author	../blog/rules.py	/^from insaction.rules import is_author, is_author_group, is_editor, is_manager$/;"	kind:namespace	line:2
+is_author	../insaction/rules.py	/^def is_author(self, user, authored_object):$/;"	kind:function	line:5
+is_author	../website/rules.py	/^from insaction.rules import is_author, is_author_group, is_editor, is_manager$/;"	kind:namespace	line:2
+is_author_group	../blog/rules.py	/^from insaction.rules import is_author, is_author_group, is_editor, is_manager$/;"	kind:namespace	line:2
+is_author_group	../insaction/rules.py	/^is_author_group = rules.is_group_member('author')$/;"	kind:variable	line:13
+is_author_group	../website/rules.py	/^from insaction.rules import is_author, is_author_group, is_editor, is_manager$/;"	kind:namespace	line:2
+is_editor	../blog/rules.py	/^from insaction.rules import is_author, is_author_group, is_editor, is_manager$/;"	kind:namespace	line:2
+is_editor	../insaction/rules.py	/^is_editor = rules.is_group_member('editor')$/;"	kind:variable	line:14
+is_editor	../website/rules.py	/^from insaction.rules import is_author, is_author_group, is_editor, is_manager$/;"	kind:namespace	line:2
+is_manager	../blog/rules.py	/^from insaction.rules import is_author, is_author_group, is_editor, is_manager$/;"	kind:namespace	line:2
+is_manager	../insaction/rules.py	/^is_manager = rules.is_group_member('manager')$/;"	kind:variable	line:15
+is_manager	../website/rules.py	/^from insaction.rules import is_author, is_author_group, is_editor, is_manager$/;"	kind:namespace	line:2
 manage.py	../manage.py	1;"	kind:file	line:1
-managers	../blog/migrations/0005_auto_20180102_1807.py	/^            managers=[$/;"	kind:variable	line:25
+manager	../blog/migrations/0001_initial.py	/^import django.db.models.manager$/;"	kind:namespace	line:6
+manager	../website/migrations/0001_initial.py	/^import django.db.models.manager$/;"	kind:namespace	line:5
+managers	../blog/migrations/0001_initial.py	/^            managers=[$/;"	kind:variable	line:35
+managers	../blog/migrations/0001_initial.py	/^            managers=[$/;"	kind:variable	line:52
+managers	../blog/migrations/0001_initial.py	/^            managers=[$/;"	kind:variable	line:71
+managers	../website/migrations/0001_initial.py	/^            managers=[$/;"	kind:variable	line:30
+markdown	../blog/templatetags/blog.py	/^import markdown$/;"	kind:namespace	line:3
+markdownify	../blog/templatetags/blog.py	/^def markdownify(value):$/;"	kind:function	line:10
 migrations	../blog/migrations/0001_initial.py	/^from django.db import migrations, models$/;"	kind:namespace	line:4
-migrations	../blog/migrations/0002_auto_20180101_1853.py	/^from django.db import migrations, models$/;"	kind:namespace	line:4
-migrations	../blog/migrations/0003_auto_20180101_2128.py	/^from django.db import migrations, models$/;"	kind:namespace	line:3
-migrations	../blog/migrations/0004_auto_20180101_2130.py	/^from django.db import migrations, models$/;"	kind:namespace	line:4
-migrations	../blog/migrations/0005_auto_20180102_1807.py	/^from django.db import migrations, models$/;"	kind:namespace	line:4
-migrations	../blog/migrations/0006_auto_20180102_1818.py	/^from django.db import migrations, models$/;"	kind:namespace	line:3
-migrations	../blog/migrations/0007_article_image.py	/^from django.db import migrations, models$/;"	kind:namespace	line:3
-migrations	../blog/migrations/0008_auto_20180102_1917.py	/^from django.db import migrations, models$/;"	kind:namespace	line:4
-migrations	../blog/migrations/0009_auto_20180102_2134.py	/^from django.db import migrations, models$/;"	kind:namespace	line:3
-model	../blog/views.py	/^    model = Article$/;"	kind:variable	line:10
-model	../blog/views.py	/^    model = Article$/;"	kind:variable	line:38
-model_name	../blog/migrations/0002_auto_20180101_1853.py	/^            model_name='article',$/;"	kind:variable	line:44
-model_name	../blog/migrations/0002_auto_20180101_1853.py	/^            model_name='blogpost',$/;"	kind:variable	line:29
-model_name	../blog/migrations/0002_auto_20180101_1853.py	/^            model_name='blogpost',$/;"	kind:variable	line:33
-model_name	../blog/migrations/0003_auto_20180101_2128.py	/^            model_name='article',$/;"	kind:variable	line:18
-model_name	../blog/migrations/0003_auto_20180101_2128.py	/^            model_name='article',$/;"	kind:variable	line:23
-model_name	../blog/migrations/0003_auto_20180101_2128.py	/^            model_name='article',$/;"	kind:variable	line:28
-model_name	../blog/migrations/0004_auto_20180101_2130.py	/^            model_name='article',$/;"	kind:variable	line:16
-model_name	../blog/migrations/0005_auto_20180102_1807.py	/^            model_name='article',$/;"	kind:variable	line:30
-model_name	../blog/migrations/0006_auto_20180102_1818.py	/^            model_name='article',$/;"	kind:variable	line:15
-model_name	../blog/migrations/0007_article_image.py	/^            model_name='article',$/;"	kind:variable	line:14
-model_name	../blog/migrations/0008_auto_20180102_1917.py	/^            model_name='article',$/;"	kind:variable	line:38
-model_name	../blog/migrations/0009_auto_20180102_2134.py	/^            model_name='profile',$/;"	kind:variable	line:14
+migrations	../website/migrations/0001_initial.py	/^from django.db import migrations, models$/;"	kind:namespace	line:3
+model	../blog/views.py	/^    model = Article$/;"	kind:variable	line:12
+model	../blog/views.py	/^    model = Article$/;"	kind:variable	line:49
+model	../blog/views.py	/^    model = Article$/;"	kind:variable	line:63
+model	../blog/views.py	/^    model = Article$/;"	kind:variable	line:70
+model	../website/views.py	/^    model = News$/;"	kind:variable	line:12
+model_name	../blog/migrations/0001_initial.py	/^            model_name='article',$/;"	kind:variable	line:76
+model_name	../blog/migrations/0001_initial.py	/^            model_name='article',$/;"	kind:variable	line:82
 models	../blog/migrations/0001_initial.py	/^from django.db import migrations, models$/;"	kind:namespace	line:4
 models	../blog/migrations/0001_initial.py	/^import django.db.models.deletion$/;"	kind:namespace	line:5
-models	../blog/migrations/0002_auto_20180101_1853.py	/^from django.db import migrations, models$/;"	kind:namespace	line:4
-models	../blog/migrations/0002_auto_20180101_1853.py	/^import django.db.models.deletion$/;"	kind:namespace	line:5
-models	../blog/migrations/0003_auto_20180101_2128.py	/^from django.db import migrations, models$/;"	kind:namespace	line:3
-models	../blog/migrations/0004_auto_20180101_2130.py	/^from django.db import migrations, models$/;"	kind:namespace	line:4
-models	../blog/migrations/0005_auto_20180102_1807.py	/^from django.db import migrations, models$/;"	kind:namespace	line:4
-models	../blog/migrations/0005_auto_20180102_1807.py	/^import django.contrib.auth.models$/;"	kind:namespace	line:3
-models	../blog/migrations/0006_auto_20180102_1818.py	/^from django.db import migrations, models$/;"	kind:namespace	line:3
-models	../blog/migrations/0006_auto_20180102_1818.py	/^import django.db.models.deletion$/;"	kind:namespace	line:4
-models	../blog/migrations/0007_article_image.py	/^from django.db import migrations, models$/;"	kind:namespace	line:3
-models	../blog/migrations/0008_auto_20180102_1917.py	/^from django.db import migrations, models$/;"	kind:namespace	line:4
-models	../blog/migrations/0008_auto_20180102_1917.py	/^import django.db.models.deletion$/;"	kind:namespace	line:5
-models	../blog/migrations/0009_auto_20180102_2134.py	/^from django.db import migrations, models$/;"	kind:namespace	line:3
-models	../blog/models.py	/^from django.db import models$/;"	kind:namespace	line:1
+models	../blog/migrations/0001_initial.py	/^import django.db.models.manager$/;"	kind:namespace	line:6
+models	../blog/models.py	/^from django.db import models$/;"	kind:namespace	line:5
+models	../website/admin.py	/^from . import models$/;"	kind:namespace	line:2
+models	../website/migrations/0001_initial.py	/^from django.db import migrations, models$/;"	kind:namespace	line:3
+models	../website/migrations/0001_initial.py	/^import django.db.models.deletion$/;"	kind:namespace	line:4
+models	../website/migrations/0001_initial.py	/^import django.db.models.manager$/;"	kind:namespace	line:5
 models	../website/models.py	/^from django.db import models$/;"	kind:namespace	line:1
 models.py	../blog/models.py	1;"	kind:file	line:1
 models.py	../website/models.py	1;"	kind:file	line:1
-modified	../blog/models.py	/^    modified = models.DateTimeField(blank=True, null=True)$/;"	kind:variable	line:55
+modified	../blog/models.py	/^    modified = models.DateTimeField(verbose_name="modifié", auto_now=True)$/;"	kind:variable	line:89
 name	../blog/apps.py	/^    name = 'blog'$/;"	kind:variable	line:5
-name	../blog/migrations/0001_initial.py	/^            name='Blog',$/;"	kind:variable	line:18
-name	../blog/migrations/0001_initial.py	/^            name='BlogPost',$/;"	kind:variable	line:26
-name	../blog/migrations/0002_auto_20180101_1853.py	/^            name='Article',$/;"	kind:variable	line:17
-name	../blog/migrations/0002_auto_20180101_1853.py	/^            name='BlogPost',$/;"	kind:variable	line:41
-name	../blog/migrations/0002_auto_20180101_1853.py	/^            name='author',$/;"	kind:variable	line:30
-name	../blog/migrations/0002_auto_20180101_1853.py	/^            name='blog',$/;"	kind:variable	line:34
-name	../blog/migrations/0002_auto_20180101_1853.py	/^            name='category',$/;"	kind:variable	line:45
-name	../blog/migrations/0003_auto_20180101_2128.py	/^            name='category',$/;"	kind:variable	line:14
-name	../blog/migrations/0003_auto_20180101_2128.py	/^            name='created',$/;"	kind:variable	line:24
-name	../blog/migrations/0003_auto_20180101_2128.py	/^            name='modified',$/;"	kind:variable	line:29
-name	../blog/migrations/0003_auto_20180101_2128.py	/^            name='views',$/;"	kind:variable	line:19
-name	../blog/migrations/0004_auto_20180101_2130.py	/^            name='created',$/;"	kind:variable	line:17
-name	../blog/migrations/0005_auto_20180102_1807.py	/^            name='UserProxy',$/;"	kind:variable	line:17
-name	../blog/migrations/0005_auto_20180102_1807.py	/^            name='created',$/;"	kind:variable	line:31
-name	../blog/migrations/0006_auto_20180102_1818.py	/^            name='author',$/;"	kind:variable	line:16
-name	../blog/migrations/0007_article_image.py	/^            name='image',$/;"	kind:variable	line:15
-name	../blog/migrations/0008_auto_20180102_1917.py	/^            name='Campus',$/;"	kind:variable	line:18
-name	../blog/migrations/0008_auto_20180102_1917.py	/^            name='Profile',$/;"	kind:variable	line:26
-name	../blog/migrations/0008_auto_20180102_1917.py	/^            name='UserProxy',$/;"	kind:variable	line:35
-name	../blog/migrations/0008_auto_20180102_1917.py	/^            name='author',$/;"	kind:variable	line:39
-name	../blog/migrations/0009_auto_20180102_2134.py	/^            name='Campus',$/;"	kind:variable	line:19
-name	../blog/migrations/0009_auto_20180102_2134.py	/^            name='campus',$/;"	kind:variable	line:15
-name	../blog/models.py	/^    name = models.CharField(max_length=140)$/;"	kind:variable	line:40
+name	../blog/migrations/0001_initial.py	/^            name='Article',$/;"	kind:variable	line:19
+name	../blog/migrations/0001_initial.py	/^            name='Category',$/;"	kind:variable	line:40
+name	../blog/migrations/0001_initial.py	/^            name='Profile',$/;"	kind:variable	line:57
+name	../blog/migrations/0001_initial.py	/^            name='author',$/;"	kind:variable	line:77
+name	../blog/migrations/0001_initial.py	/^            name='category',$/;"	kind:variable	line:83
+name	../blog/models.py	/^    name = models.CharField(max_length=140, verbose_name="nom", unique=True)$/;"	kind:variable	line:54
+name	../insaction/urls.py	/^        name="logout")$/;"	kind:variable	line:35
 name	../website/apps.py	/^    name = 'website'$/;"	kind:variable	line:5
-new_name	../blog/migrations/0002_auto_20180101_1853.py	/^            new_name='Category',$/;"	kind:variable	line:38
-old_name	../blog/migrations/0002_auto_20180101_1853.py	/^            old_name='Blog',$/;"	kind:variable	line:37
-operations	../blog/migrations/0001_initial.py	/^    operations = [$/;"	kind:variable	line:16
-operations	../blog/migrations/0002_auto_20180101_1853.py	/^    operations = [$/;"	kind:variable	line:15
-operations	../blog/migrations/0003_auto_20180101_2128.py	/^    operations = [$/;"	kind:variable	line:12
-operations	../blog/migrations/0004_auto_20180101_2130.py	/^    operations = [$/;"	kind:variable	line:14
-operations	../blog/migrations/0005_auto_20180102_1807.py	/^    operations = [$/;"	kind:variable	line:15
-operations	../blog/migrations/0006_auto_20180102_1818.py	/^    operations = [$/;"	kind:variable	line:13
-operations	../blog/migrations/0007_article_image.py	/^    operations = [$/;"	kind:variable	line:12
-operations	../blog/migrations/0008_auto_20180102_1917.py	/^    operations = [$/;"	kind:variable	line:16
-operations	../blog/migrations/0009_auto_20180102_2134.py	/^    operations = [$/;"	kind:variable	line:12
-options	../blog/migrations/0003_auto_20180101_2128.py	/^            options={'verbose_name_plural': 'categories'},$/;"	kind:variable	line:15
-options	../blog/migrations/0005_auto_20180102_1807.py	/^            options={$/;"	kind:variable	line:20
+name	../website/migrations/0001_initial.py	/^            name='News',$/;"	kind:variable	line:18
+news	../website/models.py	/^    news = models.Manager()$/;"	kind:variable	line:18
+next_page	../insaction/urls.py	/^        next_page=settings.LOGOUT_REDIRECT_URL),$/;"	kind:variable	line:34
+operations	../blog/migrations/0001_initial.py	/^    operations = [$/;"	kind:variable	line:17
+operations	../website/migrations/0001_initial.py	/^    operations = [$/;"	kind:variable	line:16
+options	../blog/migrations/0001_initial.py	/^            options={$/;"	kind:variable	line:49
+options	../blog/migrations/0001_initial.py	/^            options={$/;"	kind:variable	line:68
+options	../website/migrations/0001_initial.py	/^            options={$/;"	kind:variable	line:27
 os	../insaction/settings/__init__.py	/^import os$/;"	kind:namespace	line:13
 os	../insaction/wsgi.py	/^import os$/;"	kind:namespace	line:10
 os	../manage.py	/^import os$/;"	kind:namespace	line:2
-paginate_by	../blog/views.py	/^    paginate_by = 10$/;"	kind:variable	line:12
+paginate_by	../blog/views.py	/^    paginate_by = 10$/;"	kind:variable	line:14
 path	../blog/urls.py	/^from django.urls import path$/;"	kind:namespace	line:20
 path	../insaction/urls.py	/^from django.urls import path, include$/;"	kind:namespace	line:21
+path	../website/urls.py	/^from django.urls import path$/;"	kind:namespace	line:20
+permission_required	../blog/views.py	/^    permission_required = 'blog.create_article'$/;"	kind:variable	line:62
+permission_required	../blog/views.py	/^    permission_required = 'blog.edit_article'$/;"	kind:variable	line:69
 prod.py	../insaction/settings/prod.py	1;"	kind:file	line:1
+profiles	../blog/models.py	/^    profiles = models.Manager()$/;"	kind:variable	line:30
+pub_date	../website/models.py	/^    pub_date = models.DateField(verbose_name="Date de publication")$/;"	kind:variable	line:13
+register	../blog/templatetags/blog.py	/^register = template.Library()$/;"	kind:variable	line:6
 render	../website/views.py	/^from django.shortcuts import render$/;"	kind:namespace	line:1
+rules	../blog/rules.py	/^import rules$/;"	kind:namespace	line:1
+rules	../insaction/rules.py	/^import rules$/;"	kind:namespace	line:1
+rules	../website/rules.py	/^import rules$/;"	kind:namespace	line:1
+rules.py	../blog/rules.py	1;"	kind:file	line:1
+rules.py	../insaction/rules.py	1;"	kind:file	line:1
+rules.py	../website/rules.py	1;"	kind:file	line:1
+safestring	../blog/templatetags/blog.py	/^from django.utils import safestring$/;"	kind:namespace	line:2
+save	../blog/models.py	/^    def save(self, *args, **kwargs):$/;"	kind:member	line:106
+save	../blog/models.py	/^    def save(self, *args, **kwargs):$/;"	kind:member	line:61
 setUp	../blog/tests.py	/^    def setUp(self):$/;"	kind:member	line:8
 settings	../blog/migrations/0001_initial.py	/^from django.conf import settings$/;"	kind:namespace	line:3
-settings	../blog/migrations/0002_auto_20180101_1853.py	/^from django.conf import settings$/;"	kind:namespace	line:3
-settings	../blog/migrations/0008_auto_20180102_1917.py	/^from django.conf import settings$/;"	kind:namespace	line:3
-settings	../blog/models.py	/^from django.conf import settings$/;"	kind:namespace	line:2
+settings	../blog/models.py	/^from django.conf import settings$/;"	kind:namespace	line:6
 settings	../insaction/urls.py	/^from django.conf import settings$/;"	kind:namespace	line:22
-slug_field	../blog/views.py	/^    slug_field = 'id'$/;"	kind:variable	line:40
+shortuuid	../blog/models.py	/^import shortuuid$/;"	kind:namespace	line:9
+slug	../blog/models.py	/^    slug = models.SlugField(unique=True, max_length=50)$/;"	kind:variable	line:56
+slug	../blog/models.py	/^    slug = models.SlugField(unique=True, max_length=50)$/;"	kind:variable	line:91
+slug_field	../blog/views.py	/^    slug_field = 'slug'$/;"	kind:variable	line:28
+slug_field	../blog/views.py	/^    slug_field = 'slug'$/;"	kind:variable	line:51
+static	../insaction/urls.py	/^from django.conf.urls.static import static$/;"	kind:namespace	line:23
+subtitle	../website/models.py	/^    subtitle = models.CharField(max_length=60, verbose_name="Sous-titre")$/;"	kind:variable	line:11
 sys	../manage.py	/^import sys$/;"	kind:namespace	line:3
-template_name	../blog/views.py	/^    template_name = "blog\/index.html"$/;"	kind:variable	line:11
-template_name	../blog/views.py	/^    template_name = 'blog\/article.html'$/;"	kind:variable	line:39
-test_full_name	../blog/tests.py	/^    def test_full_name(self):$/;"	kind:member	line:12
-test_short_full_name	../blog/tests.py	/^    def test_short_full_name(self):$/;"	kind:member	line:19
-test_str	../blog/tests.py	/^    def test_str(self):$/;"	kind:member	line:24
+template	../blog/templatetags/blog.py	/^from django import template$/;"	kind:namespace	line:1
+template_name	../blog/views.py	/^    template_name = "blog\/article_create.html"$/;"	kind:variable	line:65
+template_name	../blog/views.py	/^    template_name = "blog\/article_edit.html"$/;"	kind:variable	line:72
+template_name	../blog/views.py	/^    template_name = "blog\/blog.html"$/;"	kind:variable	line:13
+template_name	../blog/views.py	/^    template_name = 'blog\/article.html'$/;"	kind:variable	line:50
+template_name	../website/views.py	/^    template_name = 'website\/index.html'$/;"	kind:variable	line:14
+test_full_name	../blog/tests.py	/^    def test_full_name(self):$/;"	kind:member	line:14
+test_short_full_name	../blog/tests.py	/^    def test_short_full_name(self):$/;"	kind:member	line:21
+test_str	../blog/tests.py	/^    def test_str(self):$/;"	kind:member	line:26
 tests.py	../blog/tests.py	1;"	kind:file	line:1
 tests.py	../website/tests.py	1;"	kind:file	line:1
-timedelta	../blog/views.py	/^from datetime import timedelta$/;"	kind:namespace	line:4
-timezone	../blog/migrations/0005_auto_20180102_1807.py	/^import django.utils.timezone$/;"	kind:namespace	line:5
-timezone	../blog/models.py	/^from django.utils import timezone$/;"	kind:namespace	line:3
-timezone	../blog/views.py	/^from django.utils import timezone$/;"	kind:namespace	line:3
-title	../blog/models.py	/^    title = models.CharField(max_length=140)$/;"	kind:variable	line:48
-trending_weight	../blog/models.py	/^    def trending_weight(self):$/;"	kind:member	line:59
+text	../blog/models.py	/^from django.utils import timezone, text$/;"	kind:namespace	line:8
+timedelta	../blog/views.py	/^from datetime import timedelta$/;"	kind:namespace	line:2
+timezone	../blog/models.py	/^from django.utils import timezone, text$/;"	kind:namespace	line:8
+timezone	../blog/views.py	/^from django.utils import timezone$/;"	kind:namespace	line:6
+timezone	../website/views.py	/^from django.utils import timezone$/;"	kind:namespace	line:3
+title	../blog/models.py	/^    title = models.CharField(max_length=140, verbose_name="titre")$/;"	kind:variable	line:80
+title	../website/models.py	/^    title = models.CharField(max_length=40, verbose_name="Titre")$/;"	kind:variable	line:10
+trending_weight	../blog/models.py	/^    def trending_weight(self):$/;"	kind:member	line:97
 urlpatterns	../blog/urls.py	/^urlpatterns = [$/;"	kind:variable	line:24
 urlpatterns	../insaction/urls.py	/^urlpatterns = [$/;"	kind:variable	line:26
+urlpatterns	../website/urls.py	/^urlpatterns = [$/;"	kind:variable	line:24
+urls	../blog/models.py	/^from django import urls$/;"	kind:namespace	line:7
 urls.py	../blog/urls.py	1;"	kind:file	line:1
 urls.py	../insaction/urls.py	1;"	kind:file	line:1
-user	../blog/models.py	/^    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)$/;"	kind:variable	line:14
-utc	../blog/migrations/0004_auto_20180101_2130.py	/^from django.utils.timezone import utc$/;"	kind:namespace	line:5
-utils	../blog/migrations/0005_auto_20180102_1807.py	/^import django.utils.timezone$/;"	kind:namespace	line:5
-verbose_name_plural	../blog/models.py	/^        verbose_name_plural = "categories"$/;"	kind:variable	line:39
-views	../blog/models.py	/^    views = models.IntegerField(default=0)$/;"	kind:variable	line:56
+urls.py	../website/urls.py	1;"	kind:file	line:1
+user	../blog/models.py	/^    user = models.OneToOneField($/;"	kind:variable	line:23
+verbose_name	../blog/models.py	/^        verbose_name = "catégorie"$/;"	kind:variable	line:53
+verbose_name	../blog/models.py	/^        verbose_name = "profil"$/;"	kind:variable	line:16
+verbose_name_plural	../website/models.py	/^        verbose_name_plural = "News"$/;"	kind:variable	line:8
+views	../blog/models.py	/^    views = models.IntegerField(default=0, verbose_name="vue")$/;"	kind:variable	line:90
+views	../website/urls.py	/^from . import views$/;"	kind:namespace	line:21
 views.py	../blog/views.py	1;"	kind:file	line:1
 views.py	../website/views.py	1;"	kind:file	line:1
-website	../insaction/urls.py	/^import website$/;"	kind:namespace	line:24
 wsgi.py	../insaction/wsgi.py	1;"	kind:file	line:1

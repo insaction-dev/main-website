@@ -108,3 +108,4 @@ public/
 media/
 db.sqlite3
 **/migrations
+.vscode/tags
