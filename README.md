@@ -1,5 +1,8 @@
-# main-website
-Main website of the organization
+# INSAction Main website
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/44ecfabe74d74b7bb87894bd7cbf9b72)](https://www.codacy.com/app/insaction-dev/main-website?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=insaction-dev/main-website&amp;utm_campaign=Badge_Grade)
+
+Main website of the organization.
 
 ## Install
 
