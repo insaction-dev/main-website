@@ -7,13 +7,13 @@ name = "pypi"
 
 [packages]
 
-Django = "*"
-Pillow = "*"
+django = "*"
+pillow = "*"
 django-geofield = "*"
 django-leaflet = "*"
 rules = "*"
 shortuuid = "*"
-Markdown = "*"
+markdown = "*"
 bleach = "*"
 
 
@@ -21,6 +21,7 @@ bleach = "*"
 
 pylint = "*"
 "autopep8" = "*"
+coverage = "*"
 
 
 [requires]
