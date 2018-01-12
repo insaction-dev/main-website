@@ -20,7 +20,8 @@ class ProfileTest(TestCase):
         self.assertEqual(self.solar.full_name, "Nathan Graule")
 
     def test_short_full_name(self):
-        """Profile has a `short_full_name` property that returns the first letter of the first name, and the complete last name."""
+        """Profile has a `short_full_name` property that returns the first letter of the first name, and the complete 
+        last name. """
         self.assertEqual(self.john.full_name_short, "J. Doe")
         self.assertEqual(self.solar.full_name_short, "N. Graule")
 
