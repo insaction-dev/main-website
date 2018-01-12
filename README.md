@@ -7,27 +7,12 @@ Main website of the organization.
 
 ## Installation
 
-Les dépendances sont gérées avec `pipenv` (`pip install pipenv`):
+Les dépendances sont gérées avec `pipenv` (`pip install pipenv`). `make` est utilisé pour les scripts de configuration:
 
 ```bash
-pipenv install
-pipenv install --dev
-```
-
-Il faut construire une base de données (cela va créer un fichier "db.sqlite3"):
-```powershell
-    pipenv shell
-    # Attendre que le terminal soit redémarré
-    python .\manage.py makemigrations website, blog
-    python .\manage.py migrate
-    # Ajouter les fichiers statiques des différentes applications dans le dossier "public"
-    python .\manage.py collectstatic --no-input
-    python .\manage.py loaddata data/fixtures.json
-```
-
-Pour lancer un serveur en local
-```bash
-pipenv run python manage.py runserver
+make # Générer l'environnement virtuel
+make server # Lancer un serveur local de développement
+make tests # Lancer les tests
 ```
     
 Si vous êtes sous Windows, PyCharm est votre ami; sinon... bonne chance :smirk:
