@@ -56,23 +56,23 @@ class CategoryTest(TestCase):
 
 class ArticleTest(TestCase):
     def setUp(self):
-        self.art_short = Article.articles.create(name='Short blog name', description='Short name category')     # type: Article
+        self.art_short = Article.articles.create(title='Short article title')     # type: Article
         long_title = 'a' * 55
-        self.art_long = Article.articles.create(name=long_title, description='Long name category')  # type: Article
+        self.art_long = Article.articles.create(title=long_title)  # type: Article
 
     def test_slugify(self):
-        """Categories should have correctly formed slugs"""
-        self.assertEqual(self.art_short.slug, 'short-blog-name')
+        """Articles should have correctly formed slugs"""
+        self.assertEqual(self.art_short.slug, 'short-article-title')
         regex = r'[@:%._\+~#=]+'
         self.assertNotRegex(self.art_short.slug, regex)
         self.assertNotRegex(self.art_long.slug, regex)
 
     def test_slugs_max_length(self):
-        """Categories should have slugs with length less than 50 characters"""
+        """Articles should have slugs with length less than 50 characters"""
         self.assertLessEqual(len(str(self.art_short.slug)), 50)
         self.assertLessEqual(len(str(self.art_long.slug)), 50)
 
     def test_slugs_truncate(self):
-        """Long category names should have slugs truncated"""
+        """Long articles names should have slugs truncated"""
         self.assertFalse(str(self.art_long.slug).endswith('a' * 8))
-        self.assertTrue(str(self.art_short.slug).endswith('-name'))
+        self.assertTrue(str(self.art_short.slug).endswith('-title'))
