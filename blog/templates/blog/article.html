@@ -86,7 +86,7 @@
         {{edit_perm}}
         <div class="divider"></div>
         <div id="main-article">
-            {{object.contents|markdownify}}
+            {{object.contents|markdownify|clean}}
         </div>
     </div>
     {% if object.modified != object.created %}
