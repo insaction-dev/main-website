@@ -13,4 +13,4 @@ def markdownify(value):
 
 @register.filter(name='clean')
 def clean(value):
-    return bleach.clean(value)
+    return safestring.mark_safe(bleach.clean(value))
