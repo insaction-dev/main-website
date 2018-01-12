@@ -4,9 +4,7 @@ cache: pip
 
 install:
     - pip install pipenv
-    - pipenv install
-    - pipenv install --dev
+    - make
 script:
-    - pipenv run coverage run --source='.' manage.py test
-    - pipenv run coverage xml
-    - pipenv run python-codacy-coverage -r coverage.xml
+    - make coverage
+    - make cov-upload
