@@ -10,3 +10,16 @@ configure:
 
 server:
 	pipenv run python manage.py runserver
+
+tests:
+	pipenv run python manage.py test blog website
+
+coverage:
+	-pipenv run coverage run --source='.' manage.py test
+	pipenv run coverage xml
+
+cov-html:
+	pipenv run coverage html
+
+cov-upload:
+	pipenv run python-codacy-coverage -r coverage.xml
