@@ -56,9 +56,12 @@ class CategoryTest(TestCase):
 
 class ArticleTest(TestCase):
     def setUp(self):
-        self.art_short = Article.articles.create(title='Short article title')     # type: Article
         long_title = 'a' * 55
-        self.art_long = Article.articles.create(title=long_title)  # type: Article
+        author = User.objects.create_user("test")
+        author = Profile.profiles.create(campus="blois", user=author)   # type: Profile
+        category = Category.categories.create(name='Custom category', description='Custom category')
+        self.art_short = category.articles.create(title='Short article title', author=author)  # type: Article
+        self.art_long = category.articles.create(title=long_title, author=author)  # type: Article
 
     def test_slugify(self):
         """Articles should have correctly formed slugs"""
