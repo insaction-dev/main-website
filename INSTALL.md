@@ -1,7 +1,7 @@
 # Installation
 
 L'installation des dépendances requiert un environnement virtuel dans lequel va opérer Python et Django; ceci afin de mieux l'isoler.
-Pour ce faire, la gestion de ces dépendances est effectuée avec `pipenv`, un utilitaire venant s'occuper de `pip`et de `virtualenv`.
+Pour ce faire, la gestion de ces dépendances est effectuée avec `pipenv`, un utilitaire venant s'occuper de `pip` et de `virtualenv`.
 
 `pipenv` est utilisé très similairement à `npm`: pour installer un paquet dans un projet, naviguer à la ligne de commande vers le dossier du projet et faites `pipenv install [paquet]`, ou `pipenv install --dev [paquet]` dans le cas où l'utilitaire n'est pas nécéssaire à l'utilisation, mais au développement (comme `pylint` qui sont utilisées sur le code directement pour aider à la programmation et au maintient du style d'écriture).
 
