@@ -15,11 +15,13 @@ tests:
 	pipenv run python manage.py test blog website
 
 coverage:
-	-pipenv run coverage run --source='.' manage.py test
+	pipenv run coverage run --source='.' manage.py test
+	
+cov-xml:
 	pipenv run coverage xml
 
 cov-html:
 	pipenv run coverage html
 
-cov-upload:
+cov-codacy: cov-xml
 	pipenv run python-codacy-coverage -r coverage.xml
