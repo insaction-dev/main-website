@@ -105,7 +105,7 @@ class Article(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.id:
-            
+
             slug = text.slugify(self.title)
             if len(slug) > 50:
                 self.slug = "{}-{}".format(

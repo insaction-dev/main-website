@@ -33,17 +33,19 @@ class ProfileTest(TestCase):
 
 class CategoryTest(TestCase):
     def setUp(self):
-        self.cat_short = Category.categories.create(name='Short blog name', description='Short name category')
+        self.cat_short = Category.categories.create(
+            name='Short blog name', description='Short name category')
         long_title = 'a' * 55
-        self.cat_long = Category.categories.create(name=long_title, description='Long name category')
-    
+        self.cat_long = Category.categories.create(
+            name=long_title, description='Long name category')
+
     def test_slugify(self):
         """Categories should have correctly formed slugs"""
         self.assertEqual(self.cat_short.slug, 'short-blog-name')
         regex = r'[@:%._\+~#=]+'
         self.assertNotRegex(self.cat_short.slug, regex)
         self.assertNotRegex(self.cat_long.slug, regex)
-    
+
     def test_slugs_max_length(self):
         """Categories should have slugs with length less than 50 characters"""
         self.assertLessEqual(len(str(self.cat_short.slug)), 50)
@@ -59,10 +61,14 @@ class ArticleTest(TestCase):
     def setUp(self):
         long_title = 'a' * 55
         author = User.objects.create_user("test")
-        author = Profile.profiles.create(campus="blois", user=author)   # type: Profile
-        category = Category.categories.create(name='Custom category', description='Custom category')
-        self.art_short = category.article_set.create(title='Short article title', author=author)  # type: Article
-        self.art_long = category.article_set.create(title=long_title, author=author)  # type: Article
+        author = Profile.profiles.create(
+            campus="blois", user=author)   # type: Profile
+        category = Category.categories.create(
+            name='Custom category', description='Custom category')
+        self.art_short = category.article_set.create(
+            title='Short article title', author=author)  # type: Article
+        self.art_long = category.article_set.create(
+            title=long_title, author=author)  # type: Article
 
     def test_slugify(self):
         """Articles should have correctly formed slugs"""
