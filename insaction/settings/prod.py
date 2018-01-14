@@ -1,3 +1,3 @@
-from base import *
+from . import *
 
 DEBUG = False
