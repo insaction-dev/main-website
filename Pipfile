@@ -16,6 +16,7 @@ shortuuid = "*"
 markdown = "*"
 bleach = "*"
 prospector = "*"
+gunicorn = "*"
 
 
 [dev-packages]
