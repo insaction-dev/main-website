@@ -19,7 +19,7 @@ SECRET_KEY = get_secret_key()
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['51.255.43.58', 'http://vps505510.ovh.net/']
+ALLOWED_HOSTS = ['51.255.43.58', 'vps505510.ovh.net']
 
 
 def get_database_password():
