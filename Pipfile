@@ -17,6 +17,7 @@ markdown = "*"
 bleach = "*"
 prospector = "*"
 gunicorn = "*"
+"psycopg2" = "*"
 
 
 [dev-packages]
