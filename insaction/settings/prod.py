@@ -11,7 +11,7 @@ def get_secret_key():
         secret = file.read()
     
     if not secret == '!':
-        return secret
+        return secret.strip()
     else:
         raise IOError('Could not get secret key.')
 
@@ -30,7 +30,7 @@ def get_database_password():
         psswd = file.read()
 
     if not psswd == '!':
-        return psswd
+        return psswd.strip()
     else:
         raise IOError('Cannot get database password.')
 
