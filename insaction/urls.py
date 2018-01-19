@@ -24,12 +24,12 @@ from django.conf.urls.static import static
 from django.contrib.auth.views import LoginView, LogoutView, TemplateView
 
 urlpatterns = [
-    path('admin/', admin.site.urls, name="admin"),
-    path('', TemplateView.as_view(template_name="maintenance.html"))
+    path('admin/', admin.site.urls, name="admin")
 ]
 
 if not settings.SHOW_MAINTENANCE:
     urlpatterns += [
+        path('', include('website.urls')),
         path('blog/', include('blog.urls')),
         path(settings.LOGIN_URL[1:],
              LoginView.as_view(template_name="login.html"), name="login"),
@@ -37,6 +37,10 @@ if not settings.SHOW_MAINTENANCE:
              LogoutView.as_view(
             next_page=settings.LOGOUT_REDIRECT_URL),
             name="logout")
+    ]
+else:
+    urlpatterns += [
+        path('', TemplateView.as_view(template_name="maintenance.html"))
     ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
