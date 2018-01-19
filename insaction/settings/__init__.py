@@ -28,6 +28,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Block access and show maintenance page
+SHOW_MAINTENANCE = False
+
 
 # Application definition
 PREREQ_APPS = [
