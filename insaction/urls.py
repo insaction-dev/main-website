@@ -25,7 +25,7 @@ from django.contrib.auth.views import LoginView, LogoutView, TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls, name="admin"),
-    path('', TemplateView(template_name="maintenance.html").as_view())
+    path('', TemplateView.as_view(template_name="maintenance.html"))
 ]
 
 if not settings.SHOW_MAINTENANCE:
