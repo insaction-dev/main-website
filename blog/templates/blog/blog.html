@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load rules %}
 
-{% has_perm 'blog.add_article' user as can_add_article %}
+{% has_perm 'blog.create_article' user as can_add_article %}
 
 {% block css %}
   <style>
@@ -26,8 +26,9 @@
             <a class="breadcrumb active" href="{% url 'blog:index' %}">Blogs</a>
             {% endif %}
         </div>
-        {{user}}
-        <a href="{% url 'blog:article-add' %}" class="btn btn-floating btn-large halfway-fab waves-effect waves-light cyan accent-3"><i class="material-icons">add</i></a>
+        {% if can_add_article %}
+            <a href="{% url 'blog:article-add' %}" class="btn btn-floating btn-large halfway-fab waves-effect waves-light cyan accent-3"><i class="material-icons">add</i></a>
+        {% endif %}
     </div>
 </div>
 {% endblock navextend %}
@@ -54,7 +55,7 @@
               <span class="card-title truncate">{{article.title}}</span>
               <p class="grey-text">
                   <a href="{% url 'blog:category' article.category.slug %}">{{article.category.name}}</a>
-                  | {{article.author}} | {{article.created | date}} | {{can_edit_article}}</p>
+                  | {{article.author}} | {{article.created | date}}</p>
               <p>{{article.intro|truncatewords:27}}</p>
             </div>
             <div class="card-action">
