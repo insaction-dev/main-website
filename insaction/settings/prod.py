@@ -9,11 +9,12 @@ def get_secret_key():
     secret = '!'
     with open(path, 'r') as file:
         secret = file.read()
-    
+
     if not secret == '!':
         return secret.strip()
     else:
         raise IOError('Could not get secret key.')
+
 
 SECRET_KEY = get_secret_key()
 
@@ -26,19 +27,20 @@ LOGGING = {
     'disable_existing_loggers': False,
     'handlers': {
         'file': {
-            'level': 'DEBUG',
+            'level': 'INFO',
             'class': 'logging.FileHandler',
             'filename': '/var/log/insaction/info.log',
         },
     },
     'loggers': {
         'django': {
-            'handlers': ['file'],
-            'level': 'DEBUG',
+            'handlers': ['file', 'console'],
+            'level': 'INFO',
             'propagate': True,
         },
     },
 }
+
 
 def get_database_password():
     path = os.path.join(BASE_DIR, 'psswd')
@@ -51,6 +53,7 @@ def get_database_password():
         return psswd.strip()
     else:
         raise IOError('Cannot get database password.')
+
 
 DATABASES = {
     'default': {
