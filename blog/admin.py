@@ -13,9 +13,9 @@ class ProfileAdmin(admin.ModelAdmin):
 @admin.register(Article)
 class ArticleAdmin(ObjectPermissionsModelAdmin):
     date_hierarchy = 'created'
-    exclude = ('created', 'modified', 'slug')
+    readonly_fields = ('created', 'modified', 'slug')
 
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    exclude = ('slug',)
+    readonly_fields = ("slug",)
