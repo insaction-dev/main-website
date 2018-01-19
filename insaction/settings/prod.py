@@ -21,6 +21,24 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['51.255.43.58', 'vps505510.ovh.net', 'insaction.org']
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/insaction/info.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
 
 def get_database_password():
     path = os.path.join(BASE_DIR, 'psswd')
