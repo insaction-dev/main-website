@@ -34,11 +34,17 @@ LOGGING = {
     },
     'loggers': {
         'django': {
-            'handlers': ['file', 'console'],
+            'handlers': ['file'],
             'level': 'INFO',
             'propagate': True,
+            'format': 'default'
         },
     },
+    'formatters': {
+        'default': {
+            'format': "%(asctime)s [%(levelname)s:%(module)s] %(message)s"
+        }
+    }
 }
 
 
