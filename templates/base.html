@@ -133,7 +133,7 @@
 
         gtag('config', 'UA-52015533-2');
         /* {% if user.is_authenticated %} */
-        gtag('set',{'user-id': "{{user.username}}"});
+        gtag('set',{'user-id': "{{user.username|escapejs}}"});
         /* {% endif %} */
     </script>
 
