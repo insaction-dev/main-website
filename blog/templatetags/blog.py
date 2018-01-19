@@ -8,9 +8,18 @@ register = template.Library()
 
 @register.filter(name='markdownify')
 def markdownify(value):
-    return markdown.markdown(value, extensions=['markdown.extensions.nl2br', 'markdown.extensions.smarty'])
+    return markdown.markdown(
+        value,
+        extensions=[
+            'markdown.extensions.nl2br',
+            'markdown.extensions.smarty'
+        ]
+    )
 
 
 @register.filter(name='clean')
 def clean(value):
-    return safestring.mark_safe(bleach.clean(value))
+    return safestring.mark_safe(bleach.clean(
+        value,
+        tags=['p', 'blockquote', 'i', 'b', 'img', 'a']
+    ))
