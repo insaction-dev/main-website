@@ -62,15 +62,17 @@
   </div>
 {% endblock navextend %}
 {% block content %}
-<div id="top-block">
-    <img src="{{object.image.url}}">
-    <div class="container white-text">
-        <h1>{{object.title}}</h1>
-        <p>
-            <span class="grey-text text-lighten-3 flow-text">{{object.author.full_name}} | {{object.created | date}} | Can edit: {{can_edit_article}}</span>
-        </p>
+<header>
+    <div id="top-block">
+        <img src="{{object.image.url}}">
+        <div class="container white-text">
+            <h1>{{object.title}}</h1>
+            <p>
+                <span class="grey-text text-lighten-3 flow-text">{{object.author.full_name}} | {{object.created | date}} | Can edit: {{can_edit_article}}</span>
+            </p>
+        </div>
     </div>
-</div>
+</header>
 {% if can_edit_article %}
 <div class="fixed-action-btn">
     <a href="{% url 'blog:article-edit' object.slug %}" class="btn-floating btn-large light-green">
@@ -78,7 +80,7 @@
     </a>
 </div>
 {% endif %}
-<div class="section">
+<main class="section">
     <div class="container">
         <p class="flow-text">
             {{object.intro}}
@@ -98,7 +100,7 @@
         </div>
     </div>
     {% endif %}
-</div>
+</main>
 {% endblock content %}
 {% block scripts %}
 <script>
