@@ -9,7 +9,7 @@ configure:
 	python manage.py loaddata data/fixtures.json
 
 server:
-	pipenv env DJANGO_SETTINGS_MODULE=insaction.settings.dev ./manage.py runserver 0.0.0.0:8000
+	pipenv run env DJANGO_SETTINGS_MODULE=insaction.settings.dev ./manage.py runserver 0.0.0.0:8000
 
 production:
 	pipenv run gunicorn --env DJANGO_SETTINGS_MODULE=insaction.settings.prod --config gunicorn.py insaction.wsgi:application
