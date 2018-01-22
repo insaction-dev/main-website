@@ -19,6 +19,7 @@ prospector = "*"
 gunicorn = "*"
 "psycopg2" = "*"
 whitenoise = "*"
+eventlet = "*"
 
 
 [dev-packages]
