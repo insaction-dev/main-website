@@ -1,12 +1,9 @@
 """Blog views."""
-from datetime import timedelta
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.core.handlers.wsgi import WSGIRequest
-from django.views.generic.list import ListView
 from django.views.generic import DetailView, UpdateView, CreateView
-from django.utils import timezone
+from django.views.generic.list import ListView
 
-from .models import Article, Category, Profile
+from .models import Article, Category
 
 
 class ArticleListView(ListView):
@@ -20,8 +17,16 @@ class ArticleListView(ListView):
         return Article.articles.order_by('-created')
 
     def get_context_data(self, queryset=None, **kwargs):
+        perms = {
+            'articles': {
+                'create': self.request.user.has_perm('blog.create_article'),
+                'remove': self.request.user.has_perm('blog.remove_article')
+            }
+        }
+        
         context = super().get_context_data(queryset=queryset, **kwargs)
         context['article_title'] = "Article récents"
+        context['perms'] = perms
 
         return context
 
@@ -43,6 +48,13 @@ class CategoryListView(ArticleListView):
             category = Category.categories.get(slug=self.kwargs['slug'])
             context['article_title'] = category.name
             context['category'] = category
+            
+            perms = context['perms']
+            perms['category'] = {
+                'edit': self.request.user.has_perm('blog.change_category'),
+                'remove': self.request.user.has_perm('blog.remove_category')
+            }
+            context['perms'] = perms
 
         return context
 
@@ -60,10 +72,9 @@ class ArticleDetailsView(DetailView):
         return obj
     
     def get_context_data(self, **kwargs):
-        profile = Profile.profiles.get(user=self.request.user)
         perms = {
-            'edit': profile.user.has_perm('blog.change_article', self.object),
-            'remove': profile.user.has_perm('blog.delete_article', self.object)
+            'edit': self.request.user.has_perm('blog.change_article', self.object),
+            'remove': self.request.user.has_perm('blog.delete_article', self.object)
         }
         
         context = super().get_context_data(**kwargs)
@@ -73,14 +84,18 @@ class ArticleDetailsView(DetailView):
 
 
 class ArticleCreateView(CreateView, PermissionRequiredMixin):
-    permission_required = 'blog.create_article'
     model = Article
     fields = ['title', 'intro', 'image', 'contents']
     template_name = "blog/article_create.html"
+    
+    def has_permission(self):
+        return self.request.user.has_perm('blog.create_article')
 
 
 class ArticleUpdateView(UpdateView, PermissionRequiredMixin):
-    permission_required = 'blog.edit_article'
     model = Article
     fields = ['title', 'intro', 'image', 'contents']
     template_name = "blog/article_edit.html"
+    
+    def has_permission(self):
+        return self.request.user.has_perm('blog.change_article', self.object)

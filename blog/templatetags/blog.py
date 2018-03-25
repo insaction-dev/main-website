@@ -23,3 +23,8 @@ def clean(value):
         value,
         tags=['p', 'blockquote', 'i', 'b', 'img', 'a']
     ))
+
+
+@register.simple_tag
+def has_perm(perm, user, obj=None):
+    return user.has_perm(perm, obj)

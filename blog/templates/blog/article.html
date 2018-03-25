@@ -54,7 +54,7 @@
           <div class="col s12">
               <a class="breadcrumb" href="{% url 'blog:index' %}">Blogs</a>
               {% comment %} <a class="breadcrumb" href="{% url 'blog:category' object.category.slug %}">{{object.category.name}}</a> {% endcomment %}
-              <a class="breadcrumb active" href="#!">{{object.title}}</a>
+              <a class="breadcrumb active" href="#">{{object.title}}</a>
           </div>
       </div>
   </div>
@@ -83,7 +83,6 @@
         <p class="flow-text">
             {{object.intro}}
         </p>
-        {{edit_perm}}
         <div class="divider"></div>
         <div id="main-article">
             {{object.contents|markdownify|clean}}
