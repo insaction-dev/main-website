@@ -6,8 +6,8 @@ import bleach
 register = template.Library()
 
 
-@register.filter(name='markdownify')
-def markdownify(value):
+@register.filter(is_safe="True")
+def parse_markdown(value):
     return markdown.markdown(
         value,
         extensions=[
@@ -17,11 +17,11 @@ def markdownify(value):
     )
 
 
-@register.filter(name='clean')
+@register.filter(is_safe=True)
 def clean(value):
     return safestring.mark_safe(bleach.clean(
         value,
-        tags=['p', 'blockquote', 'i', 'b', 'img', 'a']
+        tags=['p', 'blockquote', 'i', 'b', 'img', 'a', 'em', 'strong']
     ))
 
 
