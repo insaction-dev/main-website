@@ -28,6 +28,9 @@ class Profile(models.Model):
 
     # Manager
     profiles = models.Manager()
+    
+    def has_perm(self, perm, obj=None):
+        return self.user.has_perm(perm, obj)
 
     @property
     def full_name(self):
