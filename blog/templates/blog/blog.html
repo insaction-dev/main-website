@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load rules %}
 
-{% has_perm 'blog.create_article' user None as can_add_article %}
+{% has_perm 'blog.create_article' user as can_add_article %}
 
 {% block css %}
   <style>
@@ -45,6 +45,9 @@
         </div>
     </div>
   {% endif %}
+  <div class="row">
+    Can add article: {{ can_add_article }} for {{ user }}
+  </div>
   <div class="row">
     {% if object_list %}
       {% for article in object_list %}
