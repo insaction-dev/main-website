@@ -42,10 +42,7 @@
             <p>{{desc}}</p>                   
         </div>                                
     </div>                                    
-  {% endif %}                                 
-  <div class="row">
-    Can add article: {{ can_add_article }} for {{ user }}
-  </div>
+  {% endif %}
   <div class="row">
     {% if object_list %}
       {% for article in object_list %}
