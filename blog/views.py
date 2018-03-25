@@ -14,11 +14,12 @@ class ArticleListView(ListView):
     paginate_by = 10
 
     def get_queryset(self, **kwargs):
-        delta = timezone.now() - timedelta(days=30)
-        return Article.articles.filter(created__gte=delta).order_by('-created')
+        # delta = timezone.now() - timedelta(days=30)
+        # return Article.articles.filter(created__gte=delta).order_by('-created')
+        return Article.articles.order_by('-created')
 
-    def get_context_data(self, queryset=None):
-        context = super().get_context_data(queryset=queryset)
+    def get_context_data(self, queryset=None, **kwargs):
+        context = super().get_context_data(queryset=queryset, **kwargs)
         context['article_title'] = "Article récents"
 
         return context
@@ -33,8 +34,8 @@ class CategoryListView(ArticleListView):
             qs = qs.filter(category__slug=self.kwargs['slug'])
         return qs.order_by('-created')
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    def get_context_data(self, queryset=None, **kwargs):
+        context = super().get_context_data(queryset, **kwargs)
         context['article_title'] = "Articles"
 
         if self.kwargs.get('slug'):
