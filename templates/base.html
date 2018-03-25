@@ -51,16 +51,19 @@
 
 <body class="light-green lighten-5">
     {% block navbar %}
-    <ul id="anon-dropdown" class="dropdown-content">
-        <li><a href="{% url 'login' %}?next={{request.get_full_path}}"><i class="material-icons">person</i> Connexion</a></li>
-        <li class="divider"></li>
-        <li><a href="#!"><i class="material-icons">mail_outline</i>Devenir auteur</a></li>
-    </ul>
+    {% if user.is_authenticated %}
     <ul id="user-dropdown" class="dropdown-content">
         <li><a href="#!"><i class="material-icons">account_box</i> Profil</a></li>
         <li class="divider"></li>
         <li><a href="{% url 'logout' %}?next={{request.get_full_path}}"><i class="material-icons">person_outline</i>Déconnexion</a></li>
     </ul>
+    {% else %}
+    <ul id="anon-dropdown" class="dropdown-content">
+        <li><a href="{% url 'login' %}?next={{request.get_full_path}}"><i class="material-icons">person</i> Connexion</a></li>
+        <li class="divider"></li>
+        <li><a href="#!"><i class="material-icons">mail_outline</i>Devenir auteur</a></li>
+    </ul>
+    {% endif %}
     <div id="possibly-fixed">
         <nav class="nav-extended light-green">
             <div class="nav-wrapper">
