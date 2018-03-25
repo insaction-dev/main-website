@@ -50,7 +50,7 @@ class Migration(migrations.Migration):
                 'verbose_name': 'catégorie',
             },
             managers=[
-                ('categories', django.db.models.manager.Manager()),
+                ('objects', django.db.models.manager.Manager()),
             ],
         ),
         migrations.CreateModel(
@@ -69,7 +69,7 @@ class Migration(migrations.Migration):
                 'verbose_name': 'profil',
             },
             managers=[
-                ('profiles', django.db.models.manager.Manager()),
+                ('objects', django.db.models.manager.Manager()),
             ],
         ),
         migrations.AddField(

@@ -25,9 +25,6 @@ class Profile(models.Model):
     headshot = models.ImageField(
         blank=True, null=True, verbose_name="photo de profil")
     campus = models.CharField(max_length=24, choices=CAMPUSES)
-
-    # Manager
-    profiles = models.Manager()
     
     def has_perm(self, perm, obj=None):
         return self.user.has_perm(perm, obj)
@@ -57,9 +54,6 @@ class Category(models.Model):
     name = models.CharField(max_length=140, verbose_name="nom", unique=True)
     description = models.TextField(max_length=350)
     slug = models.SlugField(unique=True, max_length=50)
-
-    # Manager
-    categories = models.Manager()
 
     def save(self, *args, **kwargs):
         # self.slug = text.slugify(self.name[:50])
@@ -92,9 +86,6 @@ class Article(models.Model):
     modified = models.DateTimeField(verbose_name="modifié", auto_now=True)
     views = models.IntegerField(default=0, verbose_name="vue")
     slug = models.SlugField(unique=True, max_length=50)
-
-    # Manager
-    articles = models.Manager()
 
     @property
     def trending_weight(self):

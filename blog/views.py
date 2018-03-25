@@ -14,7 +14,7 @@ class ArticleListView(ListView):
     def get_queryset(self, **kwargs):
         # delta = timezone.now() - timedelta(days=30)
         # return Article.articles.filter(created__gte=delta).order_by('-created')
-        return Article.articles.order_by('-created')
+        return Article.objects.order_by('-created')
 
     def get_context_data(self, queryset=None, **kwargs):
         perms = {
@@ -35,7 +35,7 @@ class CategoryListView(ArticleListView):
     slug_field = 'slug'
 
     def get_queryset(self, **kwargs):
-        qs = Article.articles.all()
+        qs = Article.objects.all()
         if self.kwargs.get('slug'):
             qs = qs.filter(category__slug=self.kwargs['slug'])
         return qs.order_by('-created')
@@ -45,7 +45,7 @@ class CategoryListView(ArticleListView):
         context['article_title'] = "Articles"
 
         if self.kwargs.get('slug'):
-            category = Category.categories.get(slug=self.kwargs['slug'])
+            category = Category.objects.get(slug=self.kwargs['slug'])
             context['article_title'] = category.name
             context['category'] = category
             

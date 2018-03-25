@@ -21,7 +21,7 @@ class IndexList(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['recent_posts'] = Article.articles.all(
+        context['recent_posts'] = Article.objects.all(
         ).order_by('-created')[:3]
 
         return context
