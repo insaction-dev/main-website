@@ -116,3 +116,8 @@ db.sqlite3
 # Production files - Ignoring as they're supposed to be secret >.>
 /psswd
 /secret
+
+# Editor configuration files
+*.iml
+.vscode
+.idea
