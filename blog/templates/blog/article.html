@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
 {% load blog %}
-{% load rules %}
-{% has_perm 'blog' user as can_edit_article %}
 
 {% block title %}
 <title>{{object.title}} - Blog INSAction</title>
@@ -55,7 +53,7 @@
       <div class="container nowrap">
           <div class="col s12">
               <a class="breadcrumb" href="{% url 'blog:index' %}">Blogs</a>
-              <a class="breadcrumb" href="{% url 'blog:category' object.category.slug %}">{{object.category.name}}</a>
+              {% comment %} <a class="breadcrumb" href="{% url 'blog:category' object.category.slug %}">{{object.category.name}}</a> {% endcomment %}
               <a class="breadcrumb active" href="#!">{{object.title}}</a>
           </div>
       </div>
@@ -65,15 +63,15 @@
 <header>
     <div id="top-block">
         <img src="{{object.image.url}}">
-        <div class="container white-text">
+        <div class="container black-text">
             <h1>{{object.title}}</h1>
             <p>
-                <span class="grey-text text-lighten-3 flow-text">{{object.author.full_name}} | {{object.created | date}} | Can edit: {{can_edit_article}}</span>
+                <span class="grey-text text-lighten-3 flow-text">{{object.author.full_name}} | {{object.created | date}} | permissions: {{perms}}</span>
             </p>
         </div>
     </div>
 </header>
-{% if can_edit_article %}
+{% if perms.edit %}
 <div class="fixed-action-btn">
     <a href="{% url 'blog:article-edit' object.slug %}" class="btn-floating btn-large light-green">
         <i class="large material-icons">mode_edit</i>
@@ -110,6 +108,6 @@
 
     // Adding classes to main article
     $('#main-article>p, #main-article>blockquote').addClass('flow-text');
-    $('#main-article>p>img').addClass('right responsive-img fade-in').css('padding', '16px');
+    $('#main-article').find('>p>img').addClass('right responsive-img fade-in').css('padding', '16px');
 </script>
 {% endblock scripts %}

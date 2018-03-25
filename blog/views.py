@@ -1,11 +1,12 @@
 """Blog views."""
 from datetime import timedelta
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.core.handlers.wsgi import WSGIRequest
 from django.views.generic.list import ListView
 from django.views.generic import DetailView, UpdateView, CreateView
 from django.utils import timezone
 
-from .models import Article, Category
+from .models import Article, Category, Profile
 
 
 class ArticleListView(ListView):
@@ -57,6 +58,18 @@ class ArticleDetailsView(DetailView):
         obj.save()
 
         return obj
+    
+    def get_context_data(self, **kwargs):
+        profile = Profile.profiles.get(user=self.request.user)
+        perms = {
+            'edit': profile.user.has_perm('blog.change_article', self.object),
+            'remove': profile.user.has_perm('blog.delete_article', self.object)
+        }
+        
+        context = super().get_context_data(**kwargs)
+        context['perms'] = perms
+        
+        return context
 
 
 class ArticleCreateView(CreateView, PermissionRequiredMixin):
