@@ -118,7 +118,10 @@
     {% block scripts %} {% endblock scripts %}
     <script>
         $(document).ready(function () {
-            console.log('ready');
+            // Activate mobile side nav
+            $(".button-collapse").sideNav();
+            
+            // Fade in images
             $('.fade-in').scrollfire({
                 offset: 0,
                 topOffset: 150,
