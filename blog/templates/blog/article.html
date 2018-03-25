@@ -101,12 +101,14 @@
 {% endblock content %}
 {% block scripts %}
 <script>
+$(document).ready(function() {
     $('div#possibly-fixed').css('position', 'absolute').css('z-index', 997).css('width', '100%');
     $('nav.nav-extended.light-green').removeClass('light-green').addClass('transparent z-depth-0');
     $('a.brand-logo').addClass('light-green-text');
 
     // Adding classes to main article
     $('#main-article>p, #main-article>blockquote').addClass('flow-text');
-    $('#main-article').find('>p>img').addClass('right responsive-img fade-in').css('padding', '16px');
+    $('#main-article').find('>p>img').addClass('right responsive-img fade-in').css('padding', '16px'); 
+});
 </script>
 {% endblock scripts %}
