@@ -1,3 +1,4 @@
+# coding=utf-8
 """Blog models for Django
 
 Models needed to setup a general blog."""
