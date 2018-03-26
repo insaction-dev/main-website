@@ -8,7 +8,7 @@
     <meta name="theme-color" content="#7cb342"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"> {% block title %}
     <title>INSAction - Projection de films, production de courts métrages</title>
-    {% endblock title %}
+{% endblock title %}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
@@ -50,46 +50,53 @@
 </head>
 
 <body class="light-green lighten-5">
-    {% block navbar %}
+{% block navbar %}
     {% if user.is_authenticated %}
-    <ul id="user-dropdown" class="dropdown-content">
-        <li><a href="#"><i class="material-icons">account_box</i> Profil</a></li>
-        <li class="divider"></li>
-        <li><a href="{% url 'logout' %}?next={{request.get_full_path}}"><i class="material-icons">person_outline</i>Déconnexion</a></li>
-    </ul>
+        <ul id="user-dropdown" class="dropdown-content">
+            <li><a href="#"><i class="material-icons">account_box</i> Profil</a></li>
+            <li class="divider"></li>
+            <li><a href="{% url 'logout' %}?next={{ request.get_full_path }}"><i
+                class="material-icons">person_outline</i>Déconnexion</a></li>
+        </ul>
     {% else %}
-    <ul id="anon-dropdown" class="dropdown-content">
-        <li><a href="{% url 'login' %}?next={{request.get_full_path}}"><i class="material-icons">person</i> Connexion</a></li>
-        <li class="divider"></li>
-        <li><a href="#"><i class="material-icons">mail_outline</i>Devenir auteur</a></li>
-    </ul>
+        <ul id="anon-dropdown" class="dropdown-content">
+            <li><a href="{% url 'login' %}?next={{ request.get_full_path }}"><i class="material-icons">person</i>
+                Connexion</a></li>
+            <li class="divider"></li>
+            <li><a href="#"><i class="material-icons">mail_outline</i>Devenir auteur</a></li>
+        </ul>
     {% endif %}
     <div id="possibly-fixed">
         <nav class="nav-extended light-green">
             <div class="nav-wrapper">
                 <div class="container">
                     <a href="{% url 'website:index' %}" class="brand-logo">INSAction</a>
-                    <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <a href="#" data-activates="mobile-nav" class="button-collapse"><i
+                        class="material-icons">menu</i></a>
                     <ul class="right">
-                        <li class="hide-on-med-and-down "><a class="black-text" href="{% url 'website:index' %}">Accueil</a></li>
+                        <li class="hide-on-med-and-down "><a href="{% url 'website:index' %}">Accueil</a></li>
                         <li class="hide-on-med-and-down">
-                            <a class="black-text" href="#">L'association</a>
+                            <a href="#">L'association</a>
                         </li>
                         <li class="hide-on-med-and-down">
-                            <a class="black-text" href="{% url 'blog:index' %}">Les blogs</a>
+                            <a href="{% url 'blog:index' %}">Les blogs</a>
                         </li>
                         {% if user.is_authenticated %}
-                        <li><a class="black-text" href="#" class="dropdown-button" data-activates="user-dropdown"><i class="material-icons">person</i></a></li>
+                            <li><a href="#" class="dropdown-button" data-activates="user-dropdown"><i
+                                class="material-icons">person</i></a></li>
                         {% else %}
-                        <li><a class="black-text" href="#" class="dropdown-button" data-activates="anon-dropdown"><i class="material-icons">person_outline</i></a></li>
+                            <li><a href="#" class="dropdown-button" data-activates="anon-dropdown"><i
+                                class="material-icons">person_outline</i></a></li>
                         {% endif %}
                         {% if user.is_staff %}
-                        <li><a class="black-text" href="{% url 'admin:index' %}"><i class="material-icons">settings_applications</i></a></li>
+                            <li><a href="{% url 'admin:index' %}"><i
+                                class="material-icons">settings_applications</i></a></li>
                         {% endif %}
                     </ul>
                     <ul class="side-nav white black-text" id="mobile-nav">
                         <li><a href="{% url 'website:index' %}"> <i class="material-icons left">home</i>Accueil</a></li>
-                        <li><a href="{% url 'blog:index' %}"><i class="material-icons left">library_books</i>Les blogs</a></li>
+                        <li><a href="{% url 'blog:index' %}"><i class="material-icons left">library_books</i>Les
+                            blogs</a></li>
                         <li><a href="#"><i class="material-icons left">star</i>L'association</a></li>
                     </ul>
                 </div>
@@ -97,67 +104,75 @@
             {% block navextend %} {% endblock navextend %}
         </nav>
     </div>
-    {% endblock navbar %} {% block content %} {% endblock content %}
-    <footer class="page-footer light-green darken-1">
-        <div class="container">
-            <div class="row">
-                <div class="col s12">
-                    <h5>INSAction</h5>
-                    <div class="col s12 l8">
-                        <p>L'INSAction est une organisation de l'INSA, fondée pour projeter et produire.</p>
-                    </div>
-                    <div class="col s12 l4">
-                        <div class="row">
-                            <div class="col s4"><a href="#"><img class="branding" src="{% static 'insaction/img/facebook.svg' %}" alt="Facebook"></a></div>
-                            <div class="col s4"><a href="#"><img class="branding" src="{% static 'insaction/img/instagram.svg' %}" alt="Instagram"></a></div>
-                            <div class="col s4"><a href="#"><img class="branding" src="{% static 'insaction/img/vimeo.svg' %}" alt="Vimeo"></a></div>
-                        </div>
+{% endblock navbar %} {% block content %} {% endblock content %}
+<footer class="page-footer light-green darken-1">
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h5>INSAction</h5>
+                <div class="col s12 l8">
+                    <p>L'INSAction est une organisation de l'INSA, fondée pour projeter et produire.</p>
+                </div>
+                <div class="col s12 l4">
+                    <div class="row">
+                        <div class="col s4"><a href="#"><img class="branding"
+                                                             src="{% static 'insaction/img/facebook.svg' %}"
+                                                             alt="Facebook"></a></div>
+                        <div class="col s4"><a href="#"><img class="branding"
+                                                             src="{% static 'insaction/img/instagram.svg' %}"
+                                                             alt="Instagram"></a></div>
+                        <div class="col s4"><a href="#"><img class="branding"
+                                                             src="{% static 'insaction/img/vimeo.svg' %}"
+                                                             alt="Vimeo"></a></div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="footer-copyright darken-1">
-            <div class="container">&copy; 2018 INSAction</div>
-        </div>
-    </footer>
+    </div>
+    <div class="footer-copyright darken-1">
+        <div class="container">&copy; 2018 INSAction</div>
+    </div>
+</footer>
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.scrollfire/1.4.0/jquery.scrollfire.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    {% block scripts %} {% endblock scripts %}
-    <script>
-        $(document).ready(function () {
-            // Activate mobile side nav
-            $(".button-collapse").sideNav();
-            
-            // Fade in images
-            $('.fade-in').scrollfire({
-                offset: 0,
-                topOffset: 150,
-                bottomOffset: 150,
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.scrollfire/1.4.0/jquery.scrollfire.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+{% block scripts %} {% endblock scripts %}
+<script>
+    $(document).ready(function () {
+        // Activate mobile side nav
+        $(".button-collapse").sideNav();
 
-                onBottomIn: function (elm, distance) {
-                    $(elm).addClass('visible');
-                }
-            });
+        // Fade in images
+        $('.fade-in').scrollfire({
+            offset: 0,
+            topOffset: 150,
+            bottomOffset: 150,
+
+            onBottomIn: function (elm, distance) {
+                $(elm).addClass('visible');
+            }
         });
-    </script>
+    });
+</script>
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-52015533-2"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-52015533-2"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
+    function gtag() {
+        dataLayer.push(arguments);
+    }
 
-        gtag('config', 'UA-52015533-2');
-        /* {% if user.is_authenticated %} */
-        gtag('set',{'user-id': "{{user.username|escapejs}}"});
+    gtag('js', new Date());
+
+    gtag('config', 'UA-52015533-2');
+    /* {% if user.is_authenticated %} */
+        gtag('set', {'user-id': "{{user.username|escapejs}}"});
         /* {% endif %} */
-    </script>
+</script>
 
 </body>
 
