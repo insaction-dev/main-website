@@ -20,6 +20,8 @@ gunicorn = "*"
 "psycopg2" = "*"
 whitenoise = "*"
 eventlet = "*"
+markdown-emdash = "*"
+bleach-whitelist = "*"
 
 
 [dev-packages]

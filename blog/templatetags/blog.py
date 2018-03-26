@@ -1,4 +1,5 @@
 from django import template
+from django.template.defaultfilters import stringfilter
 from django.utils import safestring
 import markdown
 import bleach
@@ -58,9 +59,9 @@ class LinksToEmbedExtension(Extension):
                         r'([^(]|^)https?://youtu\.be/(?P<youtubeid>\S[^?&/]+)?')
 
 
-@register.filter(is_safe=True)
+@register.filter
 def parse_markdown(value):
-    md = markdown.markdown(
+    return markdown.markdown(
         value,
         extensions=[
             'markdown.extensions.nl2br',
@@ -70,15 +71,20 @@ def parse_markdown(value):
         safe_mode='replace'
     )
 
-    return safestring.mark_safe(md)
 
-
-@register.filter(is_safe=True)
+@register.filter
+@stringfilter
 def clean(value):
-    return bleach.clean(
+    cleaned_html = bleach.clean(
         value,
-        tags=['iframe', *markdown_attrs, *markdown_tags]
+        tags=['iframe', *markdown_attrs, *markdown_tags],
+        attributes={
+            '*': ['class'],
+            'iframe': ['width', 'height', 'src', 'allowFullscreen', 'frameborder']
+        }
     )
+    
+    return safestring.mark_safe(cleaned_html)
 
 
 @register.simple_tag
