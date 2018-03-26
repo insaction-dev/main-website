@@ -23,9 +23,9 @@ from .views import ArticleListView, ArticleDetailsView, CategoryListView, Articl
 app_name = "blog"
 urlpatterns = [
     path('', ArticleListView.as_view(), name="index"),
-    path('<slug:slug>', CategoryListView.as_view(), name="category"),
-    path('<slug:category>/<slug:slug>', ArticleDetailsView.as_view(), name="article"),
+    path('article/add/', ArticleCreateView.as_view(), name='article-add'),
     path('<slug:category>/<slug:slug>/edit/',
          ArticleUpdateView.as_view(), name="article-edit"),
-    path('article/add/', ArticleCreateView.as_view(), name='article-add')
+    path('<slug:category>/<slug:slug>', ArticleDetailsView.as_view(), name="article"),
+    path('<slug:slug>', CategoryListView.as_view(), name="category")
 ]

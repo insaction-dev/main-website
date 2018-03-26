@@ -23,7 +23,7 @@ class ArticleListView(ListView):
                 'remove': self.request.user.has_perm('blog.remove_article')
             }
         }
-        
+
         context = super().get_context_data(queryset=queryset, **kwargs)
         context['article_title'] = "Article récents"
         context['perms'] = perms
@@ -48,7 +48,7 @@ class CategoryListView(ArticleListView):
             category = Category.objects.get(slug=self.kwargs['slug'])
             context['article_title'] = category.name
             context['category'] = category
-            
+
             perms = context['perms']
             perms['category'] = {
                 'edit': self.request.user.has_perm('blog.change_category'),
@@ -70,32 +70,52 @@ class ArticleDetailsView(DetailView):
         obj.save()
 
         return obj
-    
+
     def get_context_data(self, **kwargs):
         perms = {
             'edit': self.request.user.has_perm('blog.change_article', self.object),
             'remove': self.request.user.has_perm('blog.delete_article', self.object)
         }
-        
+
         context = super().get_context_data(**kwargs)
         context['perms'] = perms
-        
+
         return context
 
 
 class ArticleCreateView(CreateView, PermissionRequiredMixin):
     model = Article
-    fields = ['title', 'intro', 'image', 'contents']
-    template_name = "blog/article_create.html"
-    
+    fields = ['title', 'image', 'intro', 'contents']
+    template_name = "blog/article_edit.html"
+
     def has_permission(self):
         return self.request.user.has_perm('blog.create_article')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['mode'] = 'create'
+        context['categories'] = Category.objects.all()
+
+        return context
+    
+    def get_success_url(self):
+        return self.object.get_absolute_url()
 
 
 class ArticleUpdateView(UpdateView, PermissionRequiredMixin):
     model = Article
-    fields = ['title', 'intro', 'image', 'contents']
+    fields = ['title', 'category', 'image', 'intro', 'contents']
     template_name = "blog/article_edit.html"
-    
+
     def has_permission(self):
         return self.request.user.has_perm('blog.change_article', self.object)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['mode'] = 'edit'
+        context['categories'] = Category.objects.all()
+
+        return context
+    
+    def get_success_url(self):
+        return self.object.get_absolute_url()
