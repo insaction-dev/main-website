@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% block title %}
-  <title>Edition: {{object.title}} - Blog INSAction</title>
+    {% if mode == "create" %}
+        <title>Nouvel article - Blog INSAction</title>
+    {% else %}
+        <title>Edition: {{object.title}} - Blog INSAction</title>
+    {% endif %}
 {% endblock title %}
 
 {% block css %}
@@ -10,6 +14,13 @@
         text-align: justify;
         line-break: loose;
     }
+
+    .CodeMirror {
+        height: 70vh;
+    }
+    .CodeMirror.cm-s-paper {
+        cursor: text;
+    }
 </style>
 {% endblock css %}
 
@@ -17,10 +28,15 @@
 <div class="nav-wrapper light-green">
     <div class="container" style="white-space: nowrap; overflow-x: auto;">
         <div class="col s12">
+            {% if mode == "edit" %}
             <a href="{% url 'blog:index' %}" class="breadcrumb">Blogs</a>
             <a href="{% url 'blog:category' object.category.slug %}" class="breadcrumb">{{object.category.name}}</a>
             <a href="{{ object.get_absolute_url }}" class="breadcrumb">{{object.title|truncatewords:5}}</a>
             <a href="#" class="breadcrumb active">Edition</a>
+            {% else %}
+            <a href="{% url 'blog:index' %}" class="breadcrumb">Blogs</a>
+            <a href="#" class="breadcrumb active">Nouvel article</a>
+            {% endif %}
         </div>
     </div>
 </div>
@@ -35,15 +51,20 @@
                 {% with widget=form.title %}
                 <div class="col s12">
                     {{widget.label_tag}}
-                    <input type="text" name="{{widget.name}}" id="{{widget.id_for_label}}" class="validate" value="{{widget.value}}" data-length="140"/>
+                    <input type="text" name="{{widget.name}}" id="{{widget.id_for_label}}" class="validate" value="{% firstof widget.value '' %}" data-length="140"/>
                 </div>
                 {% endwith %}
+            </div>
+            <div class="input-field">
+                <div class="col s12">
+                    {{ form.category }}
+                </div>
             </div>
             <div class="input-field">
                 {% with widget=form.intro %}
                 <div class="col s12">
                     {{widget.label_tag}}
-                    <textarea name="{{widget.name}}" id="{{widget.id_for_label}}" class="materialize-textarea validate" data-length="350">{{widget.value}}</textarea>
+                    <textarea name="{{widget.name}}" id="{{widget.id_for_label}}" class="materialize-textarea validate" data-length="350">{% firstof widget.value '' %}</textarea>
                 </div>
                 {% endwith %}
             </div>
@@ -54,15 +75,18 @@
                     <input type="file" name="{{widget.name}}" id="{{widget.id_for_label}}" accept="image/x-png,image/jpeg,image/gif">
                 </div>
                 <div class="file-path-wrapper">
+                    {% if mode == "create" %}
+                    <input type="text" placeholder="Ajouter une image">
+                    {% else %}
                     <input type="text" placeholder="Changer l'image">
+                    {% endif %}
                 </div>
                 {% endwith %}
             </div>
             <div class="input-field">
                 {% with widget=form.contents %}
                 <div class="col s12">
-                    {{widget.label_tag}}
-                    <textarea name="{{widget.name}}" id="{{widget.id_for_label}}">{{widget.value}}</textarea>
+                    <textarea name="{{widget.name}}" id="{{widget.id_for_label}}">{% firstof widget.value '' %}</textarea>
                 </div>
                 {% endwith %}
             </div>
@@ -75,6 +99,8 @@
 {% block scripts %}
 <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 <script>
-    var mde = new SimpleMDE({element: document.getElementById('{{form.contents.id_for_label|escapejs}}')});
+    var mde = new SimpleMDE({
+        element: document.getElementById('{{form.contents.id_for_label|escapejs}}')
+    });
 </script>
 {% endblock scripts %}
