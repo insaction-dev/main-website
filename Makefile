@@ -1,6 +1,6 @@
 make:
 	pipenv install && pipenv install --dev
-	pipenv run make configure
+	DJANGO_SETTINGS_MODULE=insaction.settings.dev pipenv run make configure
 
 configure:
 	python manage.py makemigrations blog website
