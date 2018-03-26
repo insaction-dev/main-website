@@ -19,8 +19,8 @@
         <div class="col s12">
             <a href="{% url 'blog:index' %}" class="breadcrumb">Blogs</a>
             <a href="{% url 'blog:category' object.category.slug %}" class="breadcrumb">{{object.category.name}}</a>
-            <a href="{% url 'blog:article' object.slug %}" class="breadcrumb">{{object.title|truncatewords:5}}</a>
-            <a href="#!" class="breadcrumb active">Edition</a>
+            <a href="{{ object.get_absolute_url }}" class="breadcrumb">{{object.title|truncatewords:5}}</a>
+            <a href="#" class="breadcrumb active">Edition</a>
         </div>
     </div>
 </div>
@@ -66,7 +66,7 @@
                 </div>
                 {% endwith %}
             </div>
-                <button type="submit" class="btn teal accent-4"><i class="material-icons right">send</i>Envoyer</button>
+                <button type="submit" class="btn teal accent-4"><i class="material-icons left">send</i>Envoyer</button>
             </div>
         </form>
     </div>

@@ -24,8 +24,8 @@ app_name = "blog"
 urlpatterns = [
     path('', ArticleListView.as_view(), name="index"),
     path('<slug:slug>', CategoryListView.as_view(), name="category"),
-    path('article/<slug:slug>/', ArticleDetailsView.as_view(), name="article"),
-    path('article/<slug:slug>/edit/',
+    path('<slug:category>/<slug:slug>', ArticleDetailsView.as_view(), name="article"),
+    path('<slug:category>/<slug:slug>/edit/',
          ArticleUpdateView.as_view(), name="article-edit"),
     path('article/add/', ArticleCreateView.as_view(), name='article-add')
 ]

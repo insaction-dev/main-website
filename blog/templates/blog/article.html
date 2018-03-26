@@ -92,7 +92,7 @@
 </header>
 {% if perms.edit %}
 <div class="fixed-action-btn">
-    <a href="{% url 'blog:article-edit' object.slug %}" class="btn-floating btn-large light-green">
+    <a href="{{ object.get_absolute_url }}/edit" class="btn-floating btn-large light-green">
         <i class="large material-icons">mode_edit</i>
     </a>
 </div>

@@ -96,7 +96,7 @@ class Article(models.Model):
 
     def get_absolute_url(self):
         """Returns a reversed string that points to the public resource."""
-        return urls.reverse('blog:article', args=[self.slug])
+        return urls.reverse('blog:article', args=[self.category.slug, self.slug])
 
     def save(self, *args, **kwargs):
         if not self.id:
