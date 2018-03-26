@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
 {% load blog %}
-{% load rules %}
-{% has_perm 'blog' user as can_edit_article %}
 
 {% block title %}
 <title>{{object.title}} - Blog INSAction</title>
@@ -16,6 +14,25 @@
     p.flow-text {
         text-align: justify;
         line-break: strict;
+    }
+    
+    blockquote {
+        background: #f9f9f925;
+        border-left: 10px solid #ccc;
+        margin: 1.5em 10px;
+        padding: 0.5em 10px;
+        quotes: "\201C""\201D""\2018""\2019";
+    }
+    blockquote:before {
+        color: #ccc;
+        content: open-quote;
+        font-size: 4em;
+        line-height: 0.1em;
+        margin-right: 0.25em;
+        vertical-align: -0.4em;
+    }
+    blockquote p {
+        display: inline;
     }
 
     .nowrap {
@@ -55,8 +72,8 @@
       <div class="container nowrap">
           <div class="col s12">
               <a class="breadcrumb" href="{% url 'blog:index' %}">Blogs</a>
-              <a class="breadcrumb" href="{% url 'blog:category' object.category.slug %}">{{object.category.name}}</a>
-              <a class="breadcrumb active" href="#!">{{object.title}}</a>
+              {% comment %} <a class="breadcrumb" href="{% url 'blog:category' object.category.slug %}">{{object.category.name}}</a> {% endcomment %}
+              <a class="breadcrumb active" href="#">{{object.title}}</a>
           </div>
       </div>
   </div>
@@ -65,30 +82,29 @@
 <header>
     <div id="top-block">
         <img src="{{object.image.url}}">
-        <div class="container white-text">
-            <h1>{{object.title}}</h1>
+        <div class="container">
+            <h1 class="white-text">{{object.title}}</h1>
             <p>
-                <span class="grey-text text-lighten-3 flow-text">{{object.author.full_name}} | {{object.created | date}} | Can edit: {{can_edit_article}}</span>
+                <span class="grey-text text-lighten-3 flow-text">{{object.author.full_name}} | {{object.created | date}}</span>
             </p>
         </div>
     </div>
 </header>
-{% if can_edit_article %}
+{% if perms.edit %}
 <div class="fixed-action-btn">
     <a href="{% url 'blog:article-edit' object.slug %}" class="btn-floating btn-large light-green">
         <i class="large material-icons">mode_edit</i>
     </a>
 </div>
 {% endif %}
-<main class="section">
+<main class="section container">
     <div class="container">
         <p class="flow-text">
             {{object.intro}}
         </p>
-        {{edit_perm}}
         <div class="divider"></div>
         <div id="main-article">
-            {{object.contents|markdownify|clean}}
+            {{object.contents|parse_markdown|clean}}
         </div>
     </div>
     {% if object.modified != object.created %}
@@ -104,12 +120,15 @@
 {% endblock content %}
 {% block scripts %}
 <script>
+$(document).ready(function() {
     $('div#possibly-fixed').css('position', 'absolute').css('z-index', 997).css('width', '100%');
     $('nav.nav-extended.light-green').removeClass('light-green').addClass('transparent z-depth-0');
     $('a.brand-logo').addClass('light-green-text');
+    $('nav').find('ul>li>a').removeClass('black-text').addClass('white-text');
 
     // Adding classes to main article
-    $('#main-article>p, #main-article>blockquote').addClass('flow-text');
-    $('#main-article>p>img').addClass('right responsive-img fade-in').css('padding', '16px');
+    $('#main-article>p, #main-article>blockquote>p').addClass('flow-text');
+    $('#main-article').find('>p>img').addClass('right responsive-img fade-in').css('padding', '16px'); 
+});
 </script>
 {% endblock scripts %}

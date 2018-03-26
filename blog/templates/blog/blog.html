@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
-{% load rules %}
-
-{% has_perm 'blog.create_article' user None as can_add_article %}
+{% load blog %}
 
 {% block css %}
   <style>
@@ -18,16 +16,18 @@
 {% block navextend %}
 <div class="nav-wrapper light-green darken-1">
     <div class="container">
-        <div class="col s12">
-            {% if category %}
-            <a class="breadcrumb" href="{% url 'blog:index' %}">Blogs</a>
-            <a class="breadcrumb active" href="#!">{{category.name}}</a>
-            {% else %}
-            <a class="breadcrumb active" href="{% url 'blog:index' %}">Blogs</a>
-            {% endif %}
+        <div class="row">
+            <div class="col s6">
+                {% if category %}
+                    <a class="breadcrumb" href="{% url 'blog:index' %}">Blogs</a>
+                    <a class="breadcrumb active" href="#">{{category.name}}</a>
+                {% else %}
+                    <a class="breadcrumb active" href="{% url 'blog:index' %}">Blogs</a>
+                {% endif %}
+            </div>
         </div>
-        {% if can_add_article %}
-            <a href="{% url 'blog:article-add' %}" class="btn btn-floating btn-large halfway-fab waves-effect waves-light cyan accent-3"><i class="material-icons">add</i></a>
+        {% if perms.articles.create %}
+            <a href="{% url 'blog:article-add' %}" class="btn btn-floating btn-large halfway-fab waves-effect waves-light cyan accent-4"><i class="material-icons">add</i></a>
         {% endif %}
     </div>
 </div>
@@ -37,18 +37,18 @@
 {% firstof category.description description as desc %}
 
 <main class="container">
-  <h3>{{article_title}}</h3>
-  {% if desc %}
-    <div class="row">
-        <div class="col s12 m8 offset-m2">
-            <p>{{desc}}</p>
-        </div>
-    </div>
+  <h3>{{article_title}}</h3>                  
+  {% if desc %}                       
+    <div class="row">                         
+        <div class="col s12 m8 offset-m2">    
+            <p>{{desc}}</p>                   
+        </div>                                
+    </div>                                    
   {% endif %}
   <div class="row">
     {% if object_list %}
       {% for article in object_list %}
-      {% has_perm 'blog.edit_article' user article as can_edit_article %}
+        {% has_perm 'blog.change_article' user article as can_edit_article %}
         <div class="col s12 l6">
           <div class="card">
             <div class="card-content">
@@ -77,12 +77,12 @@
         {% if page_obj.has_previous %}
             <li class="waves-effect"><a href="{% url 'blog:index' %}?page={{page_obj.previous_page_number}}"><i class="material-icons">chevron_left</i></a></li>
         {% else %}
-            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+            <li class="disabled"><a href="#"><i class="material-icons">chevron_left</i></a></li>
         {% endif %}
 
         {% for index in paginator.page_range %}
           {% if index == page_obj.number %}
-            <li class="active light-green"><a href="#!">{{index}}</a></li>
+            <li class="active light-green"><a href="#">{{index}}</a></li>
           {% else %}
             <li class="waves-effect"><a href="{% url 'blog:index' %}?page={{index}}">{{index}}</a></li>
           {% endif %}
@@ -91,7 +91,7 @@
         {% if page_obj.has_next %}
             <li class="waves-effect"><a href="{% url 'blog:index' %}?page={{page_obj.next_page_number}}"><i class="material-icons">chevron_right</i></a></li>
         {% else %}
-            <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+            <li class="disabled"><a href="#"><i class="material-icons">chevron_right</i></a></li>
         {% endif %}
     </ul>
 </main>

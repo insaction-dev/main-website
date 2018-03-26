@@ -11,8 +11,8 @@ class ProfileTest(TestCase):
             'johndoe', 'john@gmail.com', None, first_name="John", last_name="Doe")
         user_solar = User.objects.create_user(
             'solarliner', 'solarliner@gmail.com', None, first_name="Nathan", last_name="Graule")
-        self.john = Profile.profiles.create(user=user_john, campus='blois')
-        self.solar = Profile.profiles.create(user=user_solar, campus='bourges')
+        self.john = Profile.objects.create(user=user_john, campus='blois')
+        self.solar = Profile.objects.create(user=user_solar, campus='bourges')
 
     def test_full_name(self):
         """Profile has a `full_name` property that returns the full name."""
@@ -33,10 +33,10 @@ class ProfileTest(TestCase):
 
 class CategoryTest(TestCase):
     def setUp(self):
-        self.cat_short = Category.categories.create(
+        self.cat_short = Category.objects.create(
             name='Short blog name', description='Short name category')
         long_title = 'a' * 55
-        self.cat_long = Category.categories.create(
+        self.cat_long = Category.objects.create(
             name=long_title, description='Long name category')
 
     def test_slugify(self):
@@ -61,9 +61,9 @@ class ArticleTest(TestCase):
     def setUp(self):
         long_title = 'a' * 55
         author = User.objects.create_user("test")
-        author = Profile.profiles.create(
+        author = Profile.objects.create(
             campus="blois", user=author)   # type: Profile
-        category = Category.categories.create(
+        category = Category.objects.create(
             name='Custom category', description='Custom category')
         self.art_short = category.article_set.create(
             title='Short article title', author=author)  # type: Article

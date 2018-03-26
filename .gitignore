@@ -117,6 +117,7 @@ db.sqlite3
 /psswd
 /secret
 
-# Editors
-.idea
+# Editor configuration files
+*.iml
 .vscode
+.idea
