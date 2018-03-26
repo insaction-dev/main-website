@@ -2,27 +2,83 @@ from django import template
 from django.utils import safestring
 import markdown
 import bleach
+from bleach_whitelist.bleach_whitelist import markdown_tags, markdown_attrs
+from markdown import Extension
+from markdown.inlinepatterns import Pattern
+from markdown.util import etree
 
 register = template.Library()
 
 
-@register.filter(is_safe="True")
+class HTMLRendererMixin:
+    def render(self, *args, **kwargs):
+        pass
+
+
+class IFrameRendererMixin(HTMLRendererMixin):
+    def render(self, url, width, height):
+        iframe = etree.Element('iframe')
+        iframe.set('width', width)
+        iframe.set('height', height)
+        iframe.set('src', url)
+        iframe.set('allowfullscreen', 'true')
+        iframe.set('frameborder', '0')
+
+        container = etree.Element('div')
+        container.set('class', 'video-container')
+        container.insert(0, iframe)
+        return container
+
+
+class Vimeo(Pattern, IFrameRendererMixin):
+    def handleMatch(self, m):
+        url = '//player.vimeo.com/video/%s' % m.group('vimeoid')
+        return self.render(url, '1280', '720')
+
+
+class Youtube(Pattern, IFrameRendererMixin):
+    def handleMatch(self, m):
+        url = '//www.youtube.com/embed/%s' % m.group('youtubeid')
+        return self.render(url, '1280', '720')
+
+
+class LinksToEmbedExtension(Extension):
+    def add_inline(self, md, name, klass, re):
+        pattern = klass(re)
+        pattern.md = md
+        pattern.ext = self
+        md.inlinePatterns.add(name, pattern, "<reference")
+
+    def extendMarkdown(self, md, md_globals):
+        self.add_inline(md, 'vimeo', Vimeo,
+                        r'([^(]|^)http://(www.|)vimeo\.com/(?P<vimeoid>\d+)\S*')
+        self.add_inline(md, 'youtube', Youtube,
+                        r'([^(]|^)https?://www\.youtube\.com/watch\?\S*v=(?P<youtubeid>\S[^&/]+)')
+        self.add_inline(md, 'youtube_short', Youtube,
+                        r'([^(]|^)https?://youtu\.be/(?P<youtubeid>\S[^?&/]+)?')
+
+
+@register.filter(is_safe=True)
 def parse_markdown(value):
-    return markdown.markdown(
+    md = markdown.markdown(
         value,
         extensions=[
             'markdown.extensions.nl2br',
-            'markdown.extensions.smarty'
-        ]
+            'markdown.extensions.smarty',
+            LinksToEmbedExtension()
+        ],
+        safe_mode='replace'
     )
+
+    return safestring.mark_safe(md)
 
 
 @register.filter(is_safe=True)
 def clean(value):
-    return safestring.mark_safe(bleach.clean(
+    return bleach.clean(
         value,
-        tags=['p', 'blockquote', 'i', 'b', 'img', 'a', 'em', 'strong']
-    ))
+        tags=['iframe', *markdown_attrs, *markdown_tags]
+    )
 
 
 @register.simple_tag
