@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.views.generic import DetailView, UpdateView, CreateView
 from django.views.generic.list import ListView
 
-from .models import Article, Category
+from .models import Article, Category, Profile
 
 
 class ArticleListView(ListView):
@@ -85,8 +85,13 @@ class ArticleDetailsView(DetailView):
 
 class ArticleCreateView(CreateView, PermissionRequiredMixin):
     model = Article
-    fields = ['title', 'image', 'intro', 'contents']
+    fields = ['title', 'image', 'category', 'intro', 'contents']
     template_name = "blog/article_edit.html"
+
+    def form_valid(self, form):
+        form.instance.author = Profile.objects.get(user=self.request.user)
+
+        return super().form_valid(form)
 
     def has_permission(self):
         return self.request.user.has_perm('blog.create_article')
@@ -104,13 +109,13 @@ class ArticleCreateView(CreateView, PermissionRequiredMixin):
 
 class ArticleUpdateView(UpdateView, PermissionRequiredMixin):
     model = Article
-    fields = ['title', 'category', 'image', 'intro', 'contents']
+    fields = ['title', 'image', 'category', 'intro', 'contents']
     template_name = "blog/article_edit.html"
 
     def has_permission(self):
         return self.request.user.has_perm('blog.change_article', self.object)
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs):   
         context = super().get_context_data(**kwargs)
         context['mode'] = 'edit'
         context['categories'] = Category.objects.all()

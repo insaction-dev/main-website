@@ -45,26 +45,28 @@
 {% block content %}
 <main class="section">
     <div class="container">
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="input-field">
                 {% with widget=form.title %}
                 <div class="col s12">
-                    {{widget.label_tag}}
+                    <label for="{{ widget.id_for_label }}">Titre</label>
                     <input type="text" name="{{widget.name}}" id="{{widget.id_for_label}}" class="validate" value="{% firstof widget.value '' %}" data-length="140"/>
                 </div>
                 {% endwith %}
             </div>
-            <div class="input-field">
-                <div class="col s12">
-                    {{ form.category }}
-                </div>
+            <div class="col s12">
+                <label for="{{ form.category.id_for_label }}">Catégorie</label>
+                {{ form.category }}
             </div>
             <div class="input-field">
                 {% with widget=form.intro %}
                 <div class="col s12">
-                    {{widget.label_tag}}
-                    <textarea name="{{widget.name}}" id="{{widget.id_for_label}}" class="materialize-textarea validate" data-length="350">{% firstof widget.value '' %}</textarea>
+                    <label for="{{ widget.id_for_label }}">Introduction</label>
+                    <textarea class="materialize-textarea"
+                              name="{{ widget.name }}"
+                              id="{{ widget.id_for_label }}"
+                              cols="30" rows="10">{% firstof widget.value '' %}</textarea>
                 </div>
                 {% endwith %}
             </div>
@@ -90,6 +92,12 @@
                 </div>
                 {% endwith %}
             </div>
+            <div class="row">
+                <div class="col s6"></div>
+                <div class="col s6"><a href="#" id="add-picture" class="btn teal accent-4"><i
+                    class="material-icons left">add_a_photo</i>Ajouter
+                    une image</a></div>
+            </div>
                 <button type="submit" class="btn teal accent-4"><i class="material-icons left">send</i>Envoyer</button>
             </div>
         </form>
@@ -98,9 +106,10 @@
 {% endblock content %}
 {% block scripts %}
 <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
-<script>
-    var mde = new SimpleMDE({
+    <script>
+        var mde = new SimpleMDE({
         element: document.getElementById('{{form.contents.id_for_label|escapejs}}')
     });
+        $('select').material_select();
 </script>
 {% endblock scripts %}
