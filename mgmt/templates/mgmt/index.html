@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>INSAction Management</title>
+    <link rel="stylesheet" href="{% static 'mgmt/css/style.css' %}" media="all">
+</head>
+<body>
+    <h1>Liste des membres</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Email</th>
+                <th>Téléphone</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for member in members %}
+            <tr>
+                <td>{{member.last_name}}</td>
+                <td>{{member.first_name}}</td>
+                <td>{{member.email}}</td>
+                <td>{{member.phone_number}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

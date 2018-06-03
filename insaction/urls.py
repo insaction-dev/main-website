@@ -31,6 +31,7 @@ if not settings.SHOW_MAINTENANCE:
     urlpatterns += [
         path('', include('website.urls')),
         path('blog/', include('blog.urls')),
+        path('mgmt/', include('mgmt.urls')),
         path(settings.LOGIN_URL[1:],
              LoginView.as_view(template_name="login.html"), name="login"),
         path(settings.LOGOUT_URL[1:],
@@ -40,7 +41,14 @@ if not settings.SHOW_MAINTENANCE:
     ]
 else:
     urlpatterns += [
-        path('', TemplateView.as_view(template_name="maintenance.html"))
+        path('', TemplateView.as_view(template_name="maintenance.html")),
+        path('mgmt/', include('mgmt.urls')),
+        path(settings.LOGIN_URL[1:],
+             LoginView.as_view(template_name="login.html"), name="login"),
+        path(settings.LOGOUT_URL[1:],
+             LogoutView.as_view(
+                 next_page=settings.LOGOUT_REDIRECT_URL),
+             name="logout")
     ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
