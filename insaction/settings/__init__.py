@@ -44,7 +44,8 @@ REQUIREMENTS = [
 ]
 PROJECT_APPS = [
     'website',
-    'blog'
+    'blog',
+    'mgmt'
 ]
 
 INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS + REQUIREMENTS
