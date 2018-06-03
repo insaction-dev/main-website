@@ -7,6 +7,7 @@ from .models import Person
 
 
 class IndexView(ListView):
+    model = Person
     template_name = "mgmt/index.html"
-    queryset = Person.objects.all().order_by('-last_name').filter(groups__name__icontains="membres")
+    queryset = Person.objects.all().order_by('last_name').filter(groups__name__icontains="membre")
     context_object_name = "members"
