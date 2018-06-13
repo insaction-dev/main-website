@@ -2,19 +2,21 @@ language: python
 python: '3.6'
 cache: pip
 services:
-- docker
+    - docker
 sudo: required
+
+install:
+    - pip install pipenv
+    - pipenv install --dev
 
 jobs:
     include:
-        - tests:
+        - stage: tests
             script:
-                - pip install pipenv
-                - make
                 - make coverage
                 - make cov-codacy
 
-        - deploy-master:
+        - stage: deploy
             script:
                 - docker login $DOCKER_REGISTRY -u $DOCKER_USER -p $DOCKER_TOKEN
                 - docker build -t registry.gitlab.com/insaction-dev/main-website:master .
@@ -23,11 +25,11 @@ jobs:
                 branches:
                     - master
 
-        - deploy-release:
-            script:
-                - docker login $DOCKER_REGISTRY -u $DOCKER_USER -p $DOCKER_TOKEN
-                - docker build -t registry.gitlab.com/insaction-dev/main-website:release .
-                - docker push registry.gitlab.com/insaction-dev/main-website:release
-            only:
-                branches:
-                    - release
+            - stage: deploy-release
+                script:
+                    - docker login $DOCKER_REGISTRY -u $DOCKER_USER -p $DOCKER_TOKEN
+                    - docker build -t registry.gitlab.com/insaction-dev/main-website:release .
+                    - docker push registry.gitlab.com/insaction-dev/main-website:release
+                only:
+                    branches:
+                        - release
