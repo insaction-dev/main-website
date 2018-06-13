@@ -120,4 +120,4 @@ db.sqlite3
 # Editor configuration files
 *.iml
 .vscode
-.idea
+.idea.vscode/settings.json
