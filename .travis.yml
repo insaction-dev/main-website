@@ -9,7 +9,7 @@ script:
     - make coverage
     - make cov-codacy
     
-deploy:
+deploy-master:
     services:
         - docker
     sudo: required
