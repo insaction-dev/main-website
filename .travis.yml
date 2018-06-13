@@ -11,25 +11,10 @@ install:
 
 jobs:
     include:
-        - stage: tests
-            script:
-                - make coverage
-                - make cov-codacy
+        - script: make coverage
+        - script: make cov-codacy
 
         - stage: deploy
-            script:
-                - docker login $DOCKER_REGISTRY -u $DOCKER_USER -p $DOCKER_TOKEN
-                - docker build -t registry.gitlab.com/insaction-dev/main-website:master .
-                - docker push registry.gitlab.com/insaction-dev/main-website:master
-            only:
-                branches:
-                    - master
-
-            - stage: deploy-release
-                script:
-                    - docker login $DOCKER_REGISTRY -u $DOCKER_USER -p $DOCKER_TOKEN
-                    - docker build -t registry.gitlab.com/insaction-dev/main-website:release .
-                    - docker push registry.gitlab.com/insaction-dev/main-website:release
-                only:
-                    branches:
-                        - release
+            script: docker login $DOCKER_REGISTRY -u $DOCKER_USER -p $DOCKER_TOKEN
+        - script: docker build -t registry.gitlab.com/insaction-dev/main-website:master .
+        - script: docker push registry.gitlab.com/insaction-dev/main-website:master
