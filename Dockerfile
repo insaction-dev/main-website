@@ -4,7 +4,9 @@ WORKDIR /app
 
 RUN pip install pipenv
 COPY Pipfile Pipfile
-RUN pipenv install --system
+RUN pipenv install
 COPY . .
 
 EXPOSE 80
+
+CMD [ "make", "production" ]
