@@ -1,12 +1,9 @@
 [[source]]
-
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
-
 [packages]
-
 django = "*"
 pillow = "*"
 django-geofield = "*"
@@ -18,16 +15,13 @@ bleach = "*"
 prospector = "*"
 gunicorn = "*"
 whitenoise = "*"
-
+mysqlclient = "*"
 
 [dev-packages]
-
 pylint = "*"
 "autopep8" = "*"
 coverage = "*"
 codacy-coverage = "*"
 
-
 [requires]
-
 python_version = "3.6"

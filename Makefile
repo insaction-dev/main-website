@@ -14,7 +14,7 @@ server:
 	pipenv run env DJANGO_SETTINGS_MODULE=insaction.settings.dev gunicorn -w 4 insaction.wsgi:application --reload
 
 production:
-	pipenv run env DJANGO_SETTINGS_MODULE=insaction.settings.prod gunicorn -w 4 insaction.wsgi:application
+	pipenv run env DJANGO_SETTINGS_MODULE=insaction.settings.prod gunicorn --bind="127.0.0.1:80" -w 4 insaction.wsgi:application
 
 tests:
 	pipenv run python manage.py test blog website
