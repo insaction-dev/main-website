@@ -1,1 +1,11 @@
-{}
+{
+    "name": "insaction",
+    "alias": "insaction.org",
+    "env": {
+        "DB_HOST": "35.189.194.79",
+        "DB_NAME": "insaction",
+        "DB_USERNAME": "insaction",
+        "DB_PASSWORD": "@db-user-passwd",
+        "APP_SECRET_KEY": "@app-secret"
+    }
+}

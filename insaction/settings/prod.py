@@ -1,22 +1,10 @@
 import os
 
+from django.core.management import utils
+
 from . import *
 
-
-def get_secret_key():
-    path = os.path.join(BASE_DIR, 'secret')
-
-    secret = '!'
-    with open(path, 'r') as file:
-        secret = file.read()
-
-    if not secret == '!':
-        return secret.strip()
-    else:
-        raise IOError('Could not get secret key.')
-
-
-SECRET_KEY = get_secret_key()
+SECRET_KEY = os.environ.get('APP_SECRET_KEY')
 
 DEBUG = False
 
@@ -63,13 +51,12 @@ def get_database_password():
         raise IOError('Cannot get database password.')
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'insaction',
-#         'USER': 'insaction_user',
-#         'PASSWORD': get_database_password(),
-#         'HOST': 'localhost',
-#         'PORT': '',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('GB_PASSWORD'),
+        'HOST': os.envion.get('DB_HOST')
+    }
+}
