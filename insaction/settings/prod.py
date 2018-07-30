@@ -4,7 +4,17 @@ from django.core.management.utils import get_random_secret_key
 
 from . import *
 
-SECRET_KEY = os.environ.get('APP_SECRET_KEY', get_random_secret_key())
+
+def get_env_secret(var):
+    configuring = bool(os.environ.get('APP_CONFIGURING', 'False'))
+    if configuring and not var in os.environ:
+        return get_random_secret_key()
+    elif not var in os.environ:
+        raise OSError('Bad environment configuration: Missing APP_SECRET_KEY environment variable')
+    return os.environ.get(var)
+
+
+SECRET_KEY = get_env_secret('APP_SECRET_KEY')
 
 DEBUG = False
 
@@ -44,18 +54,12 @@ LOGGING = {
 }
 
 
-def get_database_password():
-    if not 'DB_PASSWD' in os.environ:
-        raise OSError('Bad environment configuration: Missing DB_PASSWD in environment variables')
-    return os.environ.get('DB_PASSWD')
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'insaction',
         'USER': 'insaction_user',
-        'PASSWORD': get_database_password(),
+        'PASSWORD': get_env_secret('DB_PASSWD'),
         'HOST': 'localhost',
         'PORT': '',
     }
