@@ -119,5 +119,5 @@ db.sqlite3
 
 # Editor configuration files
 *.iml
-.vscode
-.idea.vscode/settings.json
+.idea/workspace.xml
+.vscode/settings.json
