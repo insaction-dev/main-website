@@ -17,7 +17,6 @@ markdown = "*"
 bleach = "*"
 prospector = "*"
 gunicorn = "*"
-"psycopg2" = "*"
 whitenoise = "*"
 
 

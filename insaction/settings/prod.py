@@ -63,13 +63,13 @@ def get_database_password():
         raise IOError('Cannot get database password.')
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'insaction',
-        'USER': 'insaction_user',
-        'PASSWORD': get_database_password(),
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'insaction',
+#         'USER': 'insaction_user',
+#         'PASSWORD': get_database_password(),
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }

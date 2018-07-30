@@ -1,0 +1,8 @@
+.editorconfig
+.git
+.gitignore
+.idea
+.travis.yml
+.vscode
+INSTALL.md
+README.md

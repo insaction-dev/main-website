@@ -7,7 +7,7 @@
     },
     "editor.insertSpaces": true,
     "editor.tabSize": 4,
-    "python.pythonPath": "/home/solarliner/.virtualenvs/python-insaction-2p9RbdAi/bin/python",
+    "python.pythonPath": "/home/solarliner/.local/share/virtualenvs/main-website-rpxixXME/bin/python",
     "python.linting.pylintEnabled": false,
     "python.linting.prospectorEnabled": true
 }

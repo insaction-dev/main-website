@@ -1,11 +1,13 @@
 make:
 	pipenv install && pipenv install --dev
-	pipenv run make configure
+	pipenv run make bootstrap
 
 configure:
 	python manage.py makemigrations blog website
 	python manage.py migrate
 	python manage.py collectstatic --no-input
+
+bootstrap: configure
 	python manage.py loaddata data/fixtures.json
 
 server:
