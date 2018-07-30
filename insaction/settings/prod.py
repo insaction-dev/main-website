@@ -22,7 +22,7 @@ DEBUG = False
 
 SHOW_MAINTENANCE = True
 
-ALLOWED_HOSTS = ['51.255.43.58', 'vps505510.ovh.net', 'insaction.org']
+ALLOWED_HOSTS = ['insaction.org']
 
 LOGGING = {
     'version': 1,
@@ -63,13 +63,13 @@ def get_database_password():
         raise IOError('Cannot get database password.')
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'insaction',
-        'USER': 'insaction_user',
-        'PASSWORD': get_database_password(),
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'insaction',
+#         'USER': 'insaction_user',
+#         'PASSWORD': get_database_password(),
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
