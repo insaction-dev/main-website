@@ -29,7 +29,8 @@ def clean(value):
         value,
         tags=['iframe', *markdown_attrs, *markdown_tags],
         attributes={
-            '*': ['class'],
+            '*': ['class', 'style'],
+            'img': ['alt', 'width', 'height'],
             'iframe': ['width', 'height', 'src', 'allowFullscreen', 'frameborder']
         }
     )
