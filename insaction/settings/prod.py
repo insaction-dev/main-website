@@ -18,7 +18,7 @@ SECRET_KEY = get_env_secret('APP_SECRET_KEY')
 
 DEBUG = False
 
-SHOW_MAINTENANCE = False
+SHOW_MAINTENANCE = True
 
 ALLOWED_HOSTS = ['.now.sh', '51.255.43.58', 'vps505510.ovh.net', '.insaction.org']
 
