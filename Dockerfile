@@ -9,7 +9,7 @@ ENV LANG C.UTF-8
 ENV APP_CONFIGURING True
 
 RUN apt-get update -qq
-RUN apt-get install -yqq python3 python3-pip mysql-client libmysqlclient-dev wget
+RUN apt-get install -yqq python3 python3-pip mysql-client libmysqlclient-dev wget git
 RUN pip3 install pipenv
 
 COPY Pipfile Pipfile.lock ./
