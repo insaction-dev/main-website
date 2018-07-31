@@ -38,11 +38,13 @@ deploy:
     - npm i -g now --silent --unsafe-perm
     - echo "FROM $DOCKER_IMAGE" > Dockerfile
     script:
-    - NOW_URL=$(now --docker -t $NOW_TOKEN -n $NOW_ALIAS)
+    - now --docker -t $NOW_TOKEN -n $NOW_ALIAS
     - now alias $NOW_ALIAS --token $NOW_TOKEN
     environment:
         name: review/$CI_COMMIT_REF_SLUG
         url: https://$NOW_ALIAS.now.sh
+    on_stop:
+        - now --token $NOW_TOKEN --team insaction-dev rm $NOW_ALIAS -y
     only:
     - master
     - staging
