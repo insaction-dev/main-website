@@ -18,7 +18,7 @@ SECRET_KEY = get_env_secret('APP_SECRET_KEY')
 
 DEBUG = False
 
-SHOW_MAINTENANCE = True
+SHOW_MAINTENANCE = False
 
 ALLOWED_HOSTS = ['.now.sh', '51.255.43.58', 'vps505510.ovh.net', '.insaction.org']
 
@@ -40,7 +40,7 @@ LOGGING = {
     },
     'loggers': {
         'django': {
-            'handlers': ['file'],
+            'handlers': ['default', 'admin_notify'],
             'level': 'INFO',
             'propagate': True,
             'format': 'default'
@@ -57,10 +57,10 @@ LOGGING = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'insaction',
-        'USER': 'insaction_user',
+        'NAME': os.environ.get('DB_NAME', 'insaction'),
+        'USER': os.environ.get('DB_USER', 'insaction'),
         'PASSWORD': get_env_secret('DB_PASSWD'),
-        'HOST': 'localhost',
-        'PORT': '',
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DB_PORT', '3306'),
     }
 }
