@@ -1,19 +1,67 @@
 image: python:3.6.5
 
-before_script:
-  - pip install pipenv
-  - make
-  
+stages:
+- build
+- deploy
+
 test:
-  script:
+    stage: build
+    script:
     - make coverage
-    
-build-docker:
-  image: docker:latest
-  services:
+
+variables:
+    DOCKER_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+
+build:
+    stage: build
+    image: docker:latest
+    services:
     - docker:dind
-  before_script:
-    - docker login registry.gitlab.com -u SolarLiner -p $REGISTRY_ACCESS_TOKEN
-  script:
-    - docker build -t registry.gitlab.com/insaction-dev/main-website .
-    - docker push registry.gitlab.com/insaction-dev/main-website
+    before_script:
+    - pip install pipenv
+    - make
+    - docker login registry.gitlab.com -u $CI_REGISTRY_USERNAME -p CI_REGISTRY_PASSWORD
+    script:
+    - docker build -t $DOCKER_IMAGE .
+    - docker push $DOCKER_IMAGE
+
+deploy:
+    stage: deploy
+    image: node:latest
+    variables:
+        NOW_ALIAS: insaction-$CI_COMMIT_REF_SLUG
+    before_script:
+    - npm i -g now --silent --unsafe-perm
+    - echo "FROM $DOCKER_IMAGE" > Dockerfile
+    script:
+    - NOW_URL=$(now --docker -t $NOW_TOKEN -n $NOW_ALIAS)
+    - sleep 20
+    - now alias $NOW_ALIAS
+    - echo $NOW_ALIAS
+    environment:
+        name: $NOW_ALIAS
+        url: https://$NOW_ALIAS.now.sh
+    only:
+    - master
+    - staging
+    - releases/*
+    - hotfix/*
+
+deploy_prod:
+    stage: deploy
+    image: node:latest
+    variables:
+        DOCKER_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+        NOW_ALIAS: insaction
+    before_script:
+    - npm i -g now --silent --unsafe-perm
+    script:
+    - NOW_URL=$(now --docker -t $NOW_TOKEN -n $NOW_ALIAS)
+    - sleep 20
+    - now alias $NOW_ALIAS
+    environment:
+        name: Production
+        url: https://${NOW_ALIAS}.now.sh
+    only:
+    - release
+    when: manually
