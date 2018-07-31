@@ -1,19 +1,87 @@
 image: python:3.6.5
 
-before_script:
-  - pip install pipenv
-  - make
-  
+stages:
+- build
+- deploy
+
+variables:
+    DOCKER_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+    NOW_ALIAS: insaction-$CI_COMMIT_REF_SLUG
+
 test:
-  script:
+    stage: build
+    variables:
+        DJANGO_SETTINGS_MODULE: insaction.settings.dev
+    before_script:
+    - pip install pipenv
+    - make
+    script:
     - make coverage
-    
-build-docker:
-  image: docker:latest
-  services:
+    allow_failure: true
+
+build:
+    stage: build
+    image: docker:latest
+    when: manual
+    services:
     - docker:dind
-  before_script:
+    before_script:
     - docker login registry.gitlab.com -u SolarLiner -p $REGISTRY_ACCESS_TOKEN
-  script:
-    - docker build -t registry.gitlab.com/insaction-dev/main-website .
-    - docker push registry.gitlab.com/insaction-dev/main-website
+    script:
+    - docker build -t $DOCKER_IMAGE .
+    - docker push $DOCKER_IMAGE
+
+deploy:
+    stage: deploy
+    image: node:latest
+    before_script:
+    - npm i -g now --silent --unsafe-perm
+    - sed -i -e '18s/configure/bootstrap/; 32aENV DJANGO_SETTINGS_MODULE insaction.settings.stage' Dockerfile
+    script:
+    - now --docker -t $NOW_TOKEN -n $NOW_ALIAS --team insaction-dev -p
+    - now alias $NOW_ALIAS --token $NOW_TOKEN
+    environment:
+        name: review/$CI_COMMIT_REF_SLUG
+        url: https://$NOW_ALIAS.now.sh
+        on_stop: stop_deploy
+    only:
+    - staging
+    - releases/*
+    - hotfix/*
+
+stop_deploy:
+    stage: deploy
+    script: now -t $NOW_TOKEN --team insaction-dev rm $NOW_ALIAS -y
+    when: manual
+    environment:
+        name: review/$CI_COMMIT_REF_SLUG
+        action: stop
+
+deploy_prod:
+    stage: deploy
+    image: node:latest
+    variables:
+        DOCKER_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+        NOW_ALIAS: insaction
+    before_script:
+    - npm i -g now --silent --unsafe-perm
+    script:
+    - now --docker -t $NOW_TOKEN -n $NOW_ALIAS -p --team insaction-dev
+    - now alias $NOW_ALIAS --token $NOW_TOKEN
+    environment:
+        name: Production
+        url: https://${NOW_ALIAS}.now.sh
+        on_stop: stop_deploy_prod
+    only:
+    - release
+    when: manual
+
+stop_deploy_prod:
+    stage: deploy
+    script: now -t $NOW_TOKEN --team insaction-dev rm $NOW_ALIAS -y
+    when: manual
+    only: 
+    - release
+    environment:
+        name: Production
+        action: stop

@@ -15,7 +15,7 @@ RUN pip3 install pipenv
 COPY Pipfile Pipfile.lock ./
 RUN pipenv install --system --deploy
 COPY . .
-RUN python3 manage.py collectstatic --no-input
+RUN make configure
 
 # Download the Cloud SQL Proxy binary
 RUN mkdir -p bin
@@ -30,7 +30,6 @@ RUN echo $KEY_FILE | base64 -id > "bin/key_file.json"
 
 EXPOSE 80
 
-ENV DJANGO_SETTINGS_MODULE insaction.settings.prod
 ENV APP_CONFIGURING False
 
 CMD ["bash", "bin/container_start.sh"]

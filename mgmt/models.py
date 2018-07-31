@@ -20,6 +20,7 @@ class Campus(BaseEntity):
     def __str__(self):
         return self.name
 
+
 class Group(BaseEntity):
     class Meta:
         verbose_name = "groupe"
@@ -35,7 +36,11 @@ class Person(BaseEntity):
 
     first_name = models.CharField(verbose_name="prénom", max_length=140)
     last_name = models.CharField(verbose_name="nom", max_length=140)
-    phone_number = models.CharField(verbose_name="numéro de téléphone", max_length=11, blank=True, null=True)
+    phone_number = models.CharField(
+        verbose_name="numéro de téléphone",
+        max_length=11,
+        blank=True, null=True
+    )
     email = models.CharField(max_length=255, blank=True, null=True)
     campus = models.ForeignKey(Campus, on_delete=models.CASCADE, related_name="people")
     groups = models.ManyToManyField(Group, related_name="people")
@@ -47,3 +52,6 @@ class Person(BaseEntity):
 
     def __str__(self):
         return '{} {}'.format(self.first_name, self.last_name)
+
+    def __repr__(self):
+        return '{} <{}>'.format(str(self), self.email)

@@ -7,9 +7,9 @@ from . import *
 
 def get_env_secret(var):
     configuring = bool(os.environ.get('APP_CONFIGURING', 'False'))
-    if configuring and not var in os.environ:
+    if configuring and var not in os.environ:
         return get_random_secret_key()
-    elif not var in os.environ:
+    elif var not in os.environ:
         raise OSError('Bad environment configuration: Missing APP_SECRET_KEY environment variable')
     return os.environ.get(var)
 
@@ -52,7 +52,6 @@ LOGGING = {
         }
     }
 }
-
 
 DATABASES = {
     'default': {
