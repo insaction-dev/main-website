@@ -39,8 +39,7 @@ deploy:
     - echo "FROM $DOCKER_IMAGE" > Dockerfile
     script:
     - NOW_URL=$(now --docker -t $NOW_TOKEN -n $NOW_ALIAS)
-    - now alias $NOW_ALIAS
-    - echo $NOW_ALIAS
+    - now alias $NOW_ALIAS --token $NOW_TOKEN
     environment:
         name: review/$CI_COMMIT_REF_SLUG
         url: https://$NOW_ALIAS.now.sh
@@ -61,7 +60,7 @@ deploy_prod:
     - echo "FROM $DOCKER_IMAGE" > Dockerfile
     script:
     - NOW_URL=$(now --docker -t $NOW_TOKEN -n $NOW_ALIAS -p --team insaction-dev)
-    - now alias $NOW_ALIAS
+    - now alias $NOW_ALIAS --token $NOW_TOKEN
     environment:
         name: Production
         url: https://${NOW_ALIAS}.now.sh
