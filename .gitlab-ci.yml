@@ -6,6 +6,9 @@ stages:
 
 test:
     stage: build
+    before_script:
+    - pip install pipenv
+    - make
     script:
     - make coverage
 
@@ -18,9 +21,7 @@ build:
     services:
     - docker:dind
     before_script:
-    - pip install pipenv
-    - make
-    - docker login registry.gitlab.com -u $CI_REGISTRY_USERNAME -p CI_REGISTRY_PASSWORD
+    - docker login registry.gitlab.com -u SolarLiner -p $REGISTRY_ACCESS_TOKEN
     script:
     - docker build -t $DOCKER_IMAGE .
     - docker push $DOCKER_IMAGE
