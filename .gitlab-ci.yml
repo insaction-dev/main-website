@@ -55,6 +55,7 @@ deploy_prod:
         NOW_ALIAS: insaction
     before_script:
     - npm i -g now --silent --unsafe-perm
+    - echo "FROM $DOCKER_IMAGE" > Dockerfile
     script:
     - NOW_URL=$(now --docker -t $NOW_TOKEN -n $NOW_ALIAS)
     - sleep 20
