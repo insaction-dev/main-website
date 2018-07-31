@@ -39,7 +39,6 @@ deploy:
     - echo "FROM $DOCKER_IMAGE" > Dockerfile
     script:
     - NOW_URL=$(now --docker -t $NOW_TOKEN -n $NOW_ALIAS)
-    - sleep 20
     - now alias $NOW_ALIAS
     - echo $NOW_ALIAS
     environment:
@@ -62,7 +61,6 @@ deploy_prod:
     - echo "FROM $DOCKER_IMAGE" > Dockerfile
     script:
     - NOW_URL=$(now --docker -t $NOW_TOKEN -n $NOW_ALIAS -p --team insaction-dev)
-    - sleep 20
     - now alias $NOW_ALIAS
     environment:
         name: Production
