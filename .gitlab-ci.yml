@@ -45,7 +45,6 @@ deploy:
         url: https://$NOW_ALIAS.now.sh
         on_stop: stop_deploy
     only:
-    - master
     - staging
     - releases/*
     - hotfix/*
