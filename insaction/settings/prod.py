@@ -1,42 +1,46 @@
 import os
 
+from django.core.management.utils import get_random_secret_key
+
 from . import *
 
 
-def get_secret_key():
-    path = os.path.join(BASE_DIR, 'secret')
-
-    secret = '!'
-    with open(path, 'r') as file:
-        secret = file.read()
-
-    if not secret == '!':
-        return secret.strip()
-    else:
-        raise IOError('Could not get secret key.')
+def get_env_secret(var):
+    configuring = bool(os.environ.get('APP_CONFIGURING', 'False'))
+    if configuring and not var in os.environ:
+        return get_random_secret_key()
+    elif not var in os.environ:
+        raise OSError('Bad environment configuration: Missing APP_SECRET_KEY environment variable')
+    return os.environ.get(var)
 
 
-SECRET_KEY = get_secret_key()
+SECRET_KEY = get_env_secret('APP_SECRET_KEY')
 
 DEBUG = False
 
 SHOW_MAINTENANCE = True
 
-ALLOWED_HOSTS = ['51.255.43.58', 'vps505510.ovh.net', 'insaction.org']
+ALLOWED_HOSTS = ['.now.sh', '51.255.43.58', 'vps505510.ovh.net', '.insaction.org']
+
+ADMINS = (('Nathan', 'solarliner@gmail.com'), ('Nathan Graule', 'nathan.graule@insa-cvl.fr'))
 
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
-        'file': {
+        'default': {
             'level': 'INFO',
-            'class': 'logging.FileHandler',
-            'filename': '/var/log/insaction/info.log',
+            'class': 'logging.StreamHandler',
+            'stream': 'sys.stdout'
         },
+        'admin_notify': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler'
+        }
     },
     'loggers': {
         'django': {
-            'handlers': ['file'],
+            'handlers': ['default', 'admin_notify'],
             'level': 'INFO',
             'propagate': True,
             'format': 'default'
@@ -50,26 +54,13 @@ LOGGING = {
 }
 
 
-def get_database_password():
-    path = os.path.join(BASE_DIR, 'psswd')
-
-    psswd = '!'
-    with open(path, 'r') as file:
-        psswd = file.read()
-
-    if not psswd == '!':
-        return psswd.strip()
-    else:
-        raise IOError('Cannot get database password.')
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'insaction',
-        'USER': 'insaction_user',
-        'PASSWORD': get_database_password(),
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': os.environ.get('DB_NAME', 'insaction'),
+        'USER': os.environ.get('DB_USER', 'insaction'),
+        'PASSWORD': get_env_secret('DB_PASSWD'),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DB_PORT', '3306'),
     }
 }
