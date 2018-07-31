@@ -43,7 +43,7 @@ deploy:
     - now alias $NOW_ALIAS
     - echo $NOW_ALIAS
     environment:
-        name: $NOW_ALIAS
+        name: review/$CI_COMMIT_REF_SLUG
         url: https://$NOW_ALIAS.now.sh
     only:
     - master
