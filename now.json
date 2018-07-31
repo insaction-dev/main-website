@@ -1,0 +1,17 @@
+{
+    "name": "insaction",
+    "alias": "insaction",
+    "env": {
+        "APP_SECRET_KEY": "@app-secret-key",
+        "DB_HOST": "localhost",
+        "DB_USER": "insaction",
+        "DB_PASSWD": "@db-passwd",
+        "DB_NAME": "insaction",
+        "DB_PORT": "3306"
+    },
+    "build": {
+        "env": {
+            "KEY_FILE": "@cloud-sql-key-file"
+        }
+    }
+}

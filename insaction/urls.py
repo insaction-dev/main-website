@@ -48,7 +48,8 @@ else:
         path(settings.LOGOUT_URL[1:],
              LogoutView.as_view(
                  next_page=settings.LOGOUT_REDIRECT_URL),
-             name="logout")
+             name="logout"),
+        path('', include('website.urls'))
     ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
