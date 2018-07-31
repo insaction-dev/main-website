@@ -37,7 +37,7 @@ class Person(BaseEntity):
     first_name = models.CharField(verbose_name="prénom", max_length=140)
     last_name = models.CharField(verbose_name="nom", max_length=140)
     phone_number = models.CharField(
-        verbose_name="numéro de téléphone", verbose_name_plural="numéros de téléphone",
+        verbose_name="numéro de téléphone",
         max_length=11,
         blank=True, null=True
     )

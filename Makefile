@@ -1,24 +1,27 @@
+.PHONY: server production
+
 make:
 	pipenv install --dev
 	DJANGO_SETTINGS_MODULE=insaction.settings.dev pipenv run make configure
 
 configure: now.json
-	python manage.py makemigrations blog website
-	python manage.py migrate
-	python manage.py collectstatic --no-input
+	./manage.py makemigrations blog website
+	./manage.py migrate
+	./manage.py collectstatic --no-input
 	touch now.json
 
 bootstrap: configure
-	python manage.py loaddata data/fixtures.json
+	./manage.py loaddata data/fixtures.json
 
-server: bootstrap
-	pipenv run env DJANGO_SETTINGS_MODULE=insaction.settings.dev ./manage.py runserver 0.0.0.0:8000
+server:
+    DJANGO_SETTINGS_MODULE=insaction.settings.dev make bootstrap
+	DJANGO_SETTINGS_MODULE=insaction.settings.dev ./manage.py runserver 0.0.0.0:8000
 
 production: configure
-	pipenv run gunicorn --env DJANGO_SETTINGS_MODULE=insaction.settings.prod --config gunicorn.py insaction.wsgi:application
+	gunicorn --config gunicorn.py insaction.wsgi:application
 
 tests:
-	pipenv run python manage.py test blog website
+	pipenv run ./manage.py test blog website
 
 coverage:
 	pipenv run coverage run --source='.' manage.py test
