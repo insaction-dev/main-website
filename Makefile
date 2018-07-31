@@ -5,7 +5,7 @@ make:
 	DJANGO_SETTINGS_MODULE=insaction.settings.dev pipenv run make configure
 
 configure: now.json
-	./manage.py makemigrations blog website
+	./manage.py makemigrations blog mgmt website
 	./manage.py migrate
 	./manage.py collectstatic --no-input
 	touch now.json
