@@ -22,6 +22,7 @@ test:
 build:
     stage: build
     image: docker:latest
+    when: manual
     services:
     - docker:dind
     before_script:
@@ -35,9 +36,9 @@ deploy:
     image: node:latest
     before_script:
     - npm i -g now --silent --unsafe-perm
-    - echo "FROM $DOCKER_IMAGE" > Dockerfile
+    - echo "FROM $DOCKER_IMAGE" #> Dockerfile
     script:
-    - now --docker -t $NOW_TOKEN -n $NOW_ALIAS --team insaction-dev
+    - now --docker -t $NOW_TOKEN -n $NOW_ALIAS --team insaction-dev -p
     - now alias $NOW_ALIAS --token $NOW_TOKEN
     environment:
         name: review/$CI_COMMIT_REF_SLUG
@@ -51,7 +52,7 @@ deploy:
 
 stop_deploy:
     stage: deploy
-    script: now -t $NOW_TOKEN --team insaction-dev rm $NOW_ALIAS
+    script: now -t $NOW_TOKEN --team insaction-dev rm $NOW_ALIAS -y
     when: manual
     environment:
         name: review/$CI_COMMIT_REF_SLUG
@@ -65,7 +66,7 @@ deploy_prod:
         NOW_ALIAS: insaction
     before_script:
     - npm i -g now --silent --unsafe-perm
-    - echo "FROM $DOCKER_IMAGE" > Dockerfile
+    - echo "FROM $DOCKER_IMAGE" #> Dockerfile
     script:
     - now --docker -t $NOW_TOKEN -n $NOW_ALIAS -p --team insaction-dev
     - now alias $NOW_ALIAS --token $NOW_TOKEN
@@ -79,7 +80,7 @@ deploy_prod:
 
 stop_deploy_prod:
     stage: deploy
-    script: now -t $NOW_TOKEN --team insaction-dev rm $NOW_ALIAS
+    script: now -t $NOW_TOKEN --team insaction-dev rm $NOW_ALIAS -y
     when: manual
     only: 
     - release
