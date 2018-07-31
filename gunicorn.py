@@ -1,6 +1,6 @@
 """Gunicorn server production settings."""
 
-bind = "unix:/opt/insaction/insaction.sock"
+bind = "127.0.0.1:80"
 workers = 5
 worker_class = "eventlet"
 max_requests = 1000

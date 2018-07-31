@@ -6,10 +6,12 @@ configure: now.json
 	python manage.py makemigrations blog website
 	python manage.py migrate
 	python manage.py collectstatic --no-input
-	python manage.py loaddata data/fixtures.json
 	touch now.json
 
-server: configure
+bootstrap: configure
+	python manage.py loaddata data/fixtures.json
+
+server: bootstrap
 	pipenv run env DJANGO_SETTINGS_MODULE=insaction.settings.dev ./manage.py runserver 0.0.0.0:8000
 
 production: configure
