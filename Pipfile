@@ -1,12 +1,9 @@
 [[source]]
-
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
-
 [packages]
-
 django = "*"
 pillow = "*"
 django-geofield = "*"
@@ -22,16 +19,13 @@ whitenoise = "*"
 eventlet = "*"
 markdown-emdash = "*"
 bleach-whitelist = "*"
-
+markdown_blog_embed = {git = "https://github.com/insaction-dev/markdown-blog-embed.git", editable = true}
 
 [dev-packages]
-
 pylint = "*"
 "autopep8" = "*"
 coverage = "*"
 codacy-coverage = "*"
 
-
 [requires]
-
 python_version = "3.6"

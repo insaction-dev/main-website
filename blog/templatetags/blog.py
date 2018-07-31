@@ -4,7 +4,7 @@ from django.utils import safestring
 import markdown
 import bleach
 from bleach_whitelist.bleach_whitelist import markdown_tags, markdown_attrs
-from vendor.blog_embed.blog_embed.extensions import LinksToEmbedExtension
+from blog_embed.extensions import LinksToEmbedExtension
 
 register = template.Library()
 
