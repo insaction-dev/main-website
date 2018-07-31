@@ -65,4 +65,4 @@ deploy_prod:
         url: https://${NOW_ALIAS}.now.sh
     only:
     - release
-    when: manually
+    when: manual
