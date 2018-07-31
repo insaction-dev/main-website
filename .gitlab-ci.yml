@@ -4,6 +4,10 @@ stages:
 - build
 - deploy
 
+variables:
+    DOCKER_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+    NOW_ALIAS: insaction-$CI_COMMIT_REF_SLUG
+
 test:
     stage: build
     variables:
@@ -14,9 +18,6 @@ test:
     script:
     - make coverage
     allow_failure: true
-
-variables:
-    DOCKER_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
 
 build:
     stage: build
@@ -32,8 +33,6 @@ build:
 deploy:
     stage: deploy
     image: node:latest
-    variables:
-        NOW_ALIAS: insaction-$CI_COMMIT_REF_SLUG
     before_script:
     - npm i -g now --silent --unsafe-perm
     - echo "FROM $DOCKER_IMAGE" > Dockerfile
@@ -43,13 +42,20 @@ deploy:
     environment:
         name: review/$CI_COMMIT_REF_SLUG
         url: https://$NOW_ALIAS.now.sh
-    on_stop:
-        - now --token $NOW_TOKEN --team insaction-dev rm $NOW_ALIAS -y
+        on_stop: stop_deploy
     only:
     - master
     - staging
     - releases/*
     - hotfix/*
+
+stop_deploy:
+    stage: deploy
+    script: now -t $NOW_TOKEN --team insaction-dev rm $NOW_ALIAS
+    when: manual
+    environment:
+        name: review/$CI_COMMIT_REF_SLUG
+        action: stop
 
 deploy_prod:
     stage: deploy
@@ -66,6 +72,15 @@ deploy_prod:
     environment:
         name: Production
         url: https://${NOW_ALIAS}.now.sh
+        on_stop: stop_deploy_prod
     only:
     - release
     when: manual
+
+stop_deploy_prod:
+    stage: deploy
+    script: now -t $NOW_TOKEN --team insaction-dev rm $NOW_ALIAS
+    when: manual
+    environment:
+        name: Production
+        action: stop
