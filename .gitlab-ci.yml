@@ -11,6 +11,7 @@ test:
     - make
     script:
     - make coverage
+    allow_failure: true
 
 variables:
     DOCKER_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
