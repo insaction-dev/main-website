@@ -6,6 +6,8 @@ stages:
 
 test:
     stage: build
+    variables:
+        DJANGO_SETTINGS_MODULE: insaction.settings.dev
     before_script:
     - pip install pipenv
     - make

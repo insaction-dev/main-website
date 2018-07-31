@@ -1,5 +1,5 @@
 make:
-	pipenv install && pipenv install --dev
+	pipenv install --dev
 	DJANGO_SETTINGS_MODULE=insaction.settings.dev pipenv run make configure
 
 configure: now.json
